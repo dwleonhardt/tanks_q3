@@ -1,13 +1,12 @@
 // console.log('boot.js');
 var TanksGame = {};
-TanksGame.Boot = function(game){
-  this.load.spritesheet('blueTank', '../../assets/blue_tank/blue_tank.png',32,32, 3);
-};
+TanksGame.Boot = function(game){};
 
 TanksGame.Boot.prototype = {
-  preload: function(){},
+  preload: function(){
+    this.load.image('bg', '/assets/background.png');
+  },
   create: function(){
-    console.log('create');
     this.stage.disableVisibilityChange = false;
     this.scale.minWidth = 300;
     this.scale.minHeight = 300;
@@ -15,7 +14,8 @@ TanksGame.Boot.prototype = {
     this.pageAlignVertically = true;
     this.stage.forcePortrait = true;
     this.stage.backgroundColor = '#FFB6C1';
-    this.scale.setScreenSize(true);
-    this.state.start('Preloader');
+    // this.scale.setScreenSize(true);
+    this.add.sprite(0,0,'bg');
+    // this.state.start('Play');
   }
 };
