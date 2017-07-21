@@ -4,7 +4,6 @@ TanksGame.Boot = function(game){};
 
 TanksGame.Boot.prototype = {
   preload: function(){
-    this.load.image('bg', '/assets/background.png');
   },
   create: function(){
     this.stage.disableVisibilityChange = false;
@@ -14,8 +13,6 @@ TanksGame.Boot.prototype = {
     this.pageAlignVertically = true;
     this.stage.forcePortrait = true;
     this.stage.backgroundColor = '#FFB6C1';
-    // this.scale.setScreenSize(true);
-    this.add.sprite(0,0,'bg');
-    // this.state.start('Play');
+    this.state.start('Play');
   }
 };
