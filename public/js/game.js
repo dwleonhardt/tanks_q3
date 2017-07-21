@@ -1,4 +1,9 @@
-console.log('game.js');
+// console.log('game.js');
 window.onload = function(){
-  var tanksGame = new Phaser.Game(600, 600, Phaser.AUTO, 'gameContainer',)
-}
+  var game = new Phaser.Game(600, 600, Phaser.AUTO, 'gameContainer');
+  console.log("onload");
+  game.state.add('Boot', TanksGame.Boot);
+  game.state.add('Play', TanksGame.Play);
+  game.state.start('Boot');
+
+};
