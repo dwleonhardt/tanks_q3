@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const server = require('http').Server(app);
-const io = require('socket.io').listen(server);
+const io = require('socket.io')(server);
 const port = process.env.PORT || 8000;
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
@@ -10,9 +10,7 @@ const morgan = require('morgan');
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
 }
-io.on('connection', function(socket){
-  console.log('a user connected');
-});
+
 
 // app.use(morgan());
 // app.use(cookieParser());
@@ -33,14 +31,20 @@ app.use('/', function(req, res){
   // res.sendfile('public/index.html');
   res.sendFile(__dirname+'/public/index.html');
 })
-
+io.on('connection', function(socket){
+  console.log('a user connected');
+  socket.on('test', function(){
+    console.log('test received');
+    socket.emit('testReceived')
+  })
+});
 // app.use(express.static('public'));
 
 // app.get('/', (req, res, next)=>{
 //   res.send('hello world');
 // });
 
-server.lastPlayerId = 0;
+// server.lastPlayerId = 0;
 
 
 // app.use('/', (req,res,next)=>{
