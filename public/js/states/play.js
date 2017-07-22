@@ -1,8 +1,5 @@
 // console.log('play.js');
-var leftKey;
-var rightKey;
-var downKey;
-var upKey;
+
 // var move = false;
 // var pressed = false;
 TanksGame.Play = function(game){
@@ -27,25 +24,15 @@ TanksGame.Play.prototype = {
     tank.animations.add('right',[9,10,11], 9, true);
     tank.animations.play('up', 9, false);
 
-
-    leftKey = this.game.input.keyboard.addKey(Phaser.Keyboard.A);
-    downKey = this.game.input.keyboard.addKey(Phaser.Keyboard.S);
-    rightKey = this.game.input.keyboard.addKey(Phaser.Keyboard.D);
-    upKey = this.game.input.keyboard.addKey(Phaser.Keyboard.W);
-
     var leftKey = this.game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
     var downKey = this.game.input.keyboard.addKey(Phaser.Keyboard.DOWN);
     var rightKey = this.game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
     var upKey = this.game.input.keyboard.addKey(Phaser.Keyboard.UP);
 
-
     leftKey.onDown.add(function(move){
       tank.animations.add('left',[3,4,5], 5, true);
       tank.animations.play('left', 5, false);
     }, this)
-
-    // TanksGame.leftKey.onDown.add(()=> pressed = true , this);
-    // TanksGame.leftKey.onUp.add(()=> pressed = false , this);
 
     downKey.onDown.add(function(move){
       tank.animations.add('down',[6,7,8], 9, true);
