@@ -44,8 +44,8 @@ TanksGame.Play.prototype = {
       tank.animations.play('left', 5, false);
     }, this)
 
-    TanksGame.leftKey.onDown.add(()=> pressed = true , this);
-    TanksGame.leftKey.onUp.add(()=> pressed = false , this);
+    // TanksGame.leftKey.onDown.add(()=> pressed = true , this);
+    // TanksGame.leftKey.onUp.add(()=> pressed = false , this);
 
     downKey.onDown.add(function(move){
       tank.animations.add('down',[6,7,8], 9, true);
@@ -105,51 +105,43 @@ wasUpKey.onDown.add(function(move){
   },
   update: function(){
 
-    if(pressed = true){
-      console.log('on');
-      // move = true;
-    }
-    else{
-      console.log('off');
-    }
-  }
 
 // let tank = this.add.sprite(300, 300, 'blueTank');
 
     if (this.input.keyboard.isDown(Phaser.Keyboard.LEFT))
     {
-        tank.x -= 4;
+        tank.x -= 3;
     }
     else if (this.input.keyboard.isDown(Phaser.Keyboard.RIGHT))
     {
-        tank.x += 4;
+        tank.x += 3;
     }
 
     if (this.input.keyboard.isDown(Phaser.Keyboard.UP))
     {
-        tank.y -= 4;
+        tank.y -= 3;
     }
     else if (this.input.keyboard.isDown(Phaser.Keyboard.DOWN))
     {
-        tank.y += 4;
+        tank.y += 3;
     }
 
     if (this.input.keyboard.isDown(Phaser.Keyboard.A))
     {
-        tank.x -= 4;
+        tank.x -= 3;
     }
     else if (this.input.keyboard.isDown(Phaser.Keyboard.D))
     {
-        tank.x += 4;
+        tank.x += 3;
     }
 
     if (this.input.keyboard.isDown(Phaser.Keyboard.W))
     {
-        tank.y -= 4;
+        tank.y -= 3;
     }
     else if (this.input.keyboard.isDown(Phaser.Keyboard.S))
     {
-        tank.y += 4;
+        tank.y += 3;
     }
   }
 }
