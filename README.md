@@ -4,7 +4,7 @@ Tanks is an interactive multi-player desktop game that is played by navigating y
 
 Our UFE will be Phaser and the use of web sockets. 
 
-Wireframes:
+Wireframes:<br />
 http://imgur.com/a/kAewV<br />
 http://imgur.com/a/T2oeH<br />
 http://imgur.com/a/TV5Pd<br />
