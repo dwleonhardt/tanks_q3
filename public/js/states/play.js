@@ -3,8 +3,8 @@ var leftKey;
 var rightKey;
 var downKey;
 var upKey;
-var move = false;
-var pressed = false;
+// var move = false;
+// var pressed = false;
 TanksGame.Play = function(game){
   this.score = 0;
   this.titleText = null;
@@ -14,7 +14,7 @@ TanksGame.Play = function(game){
 TanksGame.Play.prototype = {
   preload: function(){
     this.load.image('bg', '/assets/background.png');
-    this.load.spritesheet('blueTank', '/assets/blue_tank.png', 50,50, 12)
+    this.load.spritesheet('blueTank', '/assets/blue_tank.png', 50,50,12);
   },
   create: function(){
     // this.world.setBounds(0, 0, 600, 600);
