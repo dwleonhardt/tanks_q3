@@ -7,7 +7,7 @@ TanksGame.Play = function(game){
 TanksGame.Play.prototype = {
   preload: function(){
     this.load.image('bg', '/assets/background.png');
-    this.load.spritesheet('blueTank', '/assets/blue_tank/blue_tank.png', 32,32,3)
+    this.load.spritesheet('blueTank', '/assets/blue_tank.png', 50,50,3)
   },
   create: function(){
     this.add.sprite(0,0,'bg');
