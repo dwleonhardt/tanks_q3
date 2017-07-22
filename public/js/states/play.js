@@ -1,9 +1,19 @@
 // console.log('play.js');
 var Client = {};
-Client.socket = io.connect();
+Client.socket = io.connect('http://localhost:8000');
+// Client.socket = new io.Socket('localhost', {port: 8000 }).connect();
+Client.socket.on('testReceived', function(data){
+  console.log('the test was received!');
+})
 Client.addTank = function(){
+  console.log(Client.socket);
+  console.log('its getting called...');
   Client.socket.emit('test');
 }
+
+
+
+
 TanksGame.Play = function(game){};
 
 TanksGame.Play.prototype = {
@@ -16,6 +26,9 @@ TanksGame.Play.prototype = {
     this.add.sprite(0,0,'bg');
     Client.addTank();
   },
-  update: function(){}
+  update: function(){},
+  cats: function(){
+    console.log('cats');
+  }
 
 }
