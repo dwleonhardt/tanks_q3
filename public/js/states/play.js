@@ -7,13 +7,13 @@ TanksGame.Play = function(game){
 
 TanksGame.Play.prototype = {
   preload: function(){
-    this.load.image('bg', '/assets/background.png');
+    // this.load.image('bg', '/assets/background.png');
     this.load.spritesheet('blueTank', '/assets/blue_tank.png', 50,50,12);
     this.load.spritesheet('bullet', '/assets/bullet.png', 50, 50, 1);
   },
   create: function(){
-    this.add.sprite(0,0,'bg');
-    tank = this.add.sprite(300, 300, 'blueTank');
+    // this.add.sprite(0,0,'bg');
+    tank = this.add.sprite(650, 350, 'blueTank');
     tank.anchor.x = 0.5;
     tank.anchor.y = 0.5;
     tank.animations.add('up',[0,1,2], 3, true);
@@ -31,9 +31,17 @@ TanksGame.Play.prototype = {
       tank.animations.play('left', 9, true);
     }, this)
 
+    leftKey.onUp.add(function(){
+      tank.animations.stop(null, true);
+    }, this)
+
     downKey.onDown.add(function(move){
       tank.animations.add('down',[6,7,8], 9);
       tank.animations.play('down', 9, true);
+    }, this)
+
+    downKey.onUp.add(function(){
+      tank.animations.stop(null, true);
     }, this)
 
     rightKey.onDown.add(function(move){
@@ -41,9 +49,17 @@ TanksGame.Play.prototype = {
       tank.animations.play('right', 9, true);
     }, this)
 
+    rightKey.onUp.add(function(){
+      tank.animations.stop(null, true);
+    }, this)
+
     upKey.onDown.add(function(move){
       tank.animations.add('up',[0,1,2], 9);
       tank.animations.play('up', 9, true);
+    }, this)
+
+    upKey.onUp.add(function(){
+      tank.animations.stop(null, true);
     }, this)
 
 
@@ -53,23 +69,39 @@ TanksGame.Play.prototype = {
   var wasUpKey = this.game.input.keyboard.addKey(Phaser.Keyboard.W);
 
   wasLeftKey.onDown.add(function(move){
-    tank.animations.add('left',[3,4,5], 5, true);
-    tank.animations.play('left', 5, false);
+    tank.animations.add('left',[3,4,5], 5);
+    tank.animations.play('left', 5, true);
+  }, this)
+
+  wasLeftKey.onUp.add(function(){
+    tank.animations.stop(null, true);
   }, this)
 
   wasDownKey.onDown.add(function(move){
-    tank.animations.add('down',[6,7,8], 5, true);
-    tank.animations.play('down', 5, false);
+    tank.animations.add('down',[6,7,8], 5);
+    tank.animations.play('down', 5, true);
+  }, this)
+
+  wasDownKey.onUp.add(function(){
+    tank.animations.stop(null, true);
   }, this)
 
   wasRightKey.onDown.add(function(move){
-    tank.animations.add('right',[9,10,11], 5, true);
-    tank.animations.play('right', 5, false);
+    tank.animations.add('right',[9,10,11], 5);
+    tank.animations.play('right', 5, true);
+  }, this)
+
+  wasRightKey.onUp.add(function(){
+    tank.animations.stop(null, true);
   }, this)
 
   wasUpKey.onDown.add(function(move){
-    tank.animations.add('up',[0,1,2], 5, true);
-    tank.animations.play('up', 5, false);
+    tank.animations.add('up',[0,1,2], 5);
+    tank.animations.play('up', 5, true);
+  }, this)
+
+  wasUpKey.onUp.add(function(){
+    tank.animations.stop(null, true);
   }, this)
 
   var spacebar = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
@@ -89,6 +121,7 @@ TanksGame.Play.prototype = {
 
   },
   update: function(){
+
     if (this.input.keyboard.isDown(Phaser.Keyboard.LEFT) && tank.x > 26)
     {
         tank.x -= 3;
