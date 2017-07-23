@@ -32,7 +32,7 @@ TanksGame.Play.prototype = {
     }, this)
 
     leftKey.onUp.add(function(){
-      // if(!leftKey.onDown){}
+      d// if(!leftKey.onDown){}
       tank.animations.stop(null, true);
     }, this)
 
