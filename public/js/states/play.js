@@ -28,6 +28,7 @@ TanksGame.Play.prototype = {
   },
   create: function(){
 
+
     game.physics.startSystem(Phaser.Physics.ARCADE);
     // this.add.sprite(0,0,'bg');
     tank = this.add.sprite(650, 350, 'blueTank');
@@ -37,6 +38,15 @@ TanksGame.Play.prototype = {
     turret.anchor.setTo(0.5, 0.6);
 
     game.physics.enable(tank, Phaser.Physics.ARCADE);
+
+    bullets = game.add.group();
+    bullets.enableBody = true;
+    // bullet.physicsBodyType = Phaser.Physics.ARCADE;
+    //
+    bullets.createMultiple(50, 'bullet');
+    bullets.setAll('checkWorldBounds', true);
+    bullets.setAll('outOfBoundsKill', true);
+
 
 
     tank.animations.add('up',[0,1,2], 3, true);
@@ -77,20 +87,25 @@ TanksGame.Play.prototype = {
 
   var spacebar = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 
-  spacebar.onDown.add(function(shoot) {
-    var tankX = tank.x;
-    var tankY = tank.y;
 
-    bullet = this.add.sprite(50,50,'bullet');
-    bullet.anchor.y = 0.5;
-    bullet.anchor.x = 0.5;
-    bullet.x = tankX;
-    bullet.y = tankY;
-  },this)
 
 
   },
   update: function(){
+
+
+
+    turret.x = tank.x;
+    turret.y = tank.y;
+
+    turret.aim = this.Turret.aim(turret);
+
+    if (this.input.activePointer.isDown){
+        this.Turret.fire(turret, bullets);
+    }
+
+
+    if (this.input.keyboard.isDown(Phaser.Keyboard.A) && tank.x > 26)
 
     tank.body.velocity.x = 0;
     tank.body.velocity.y = 0;
@@ -98,6 +113,7 @@ TanksGame.Play.prototype = {
     tank.angle;
 
     if (game.input.keyboard.isDown(Phaser.Keyboard.A))
+
     {
         tank.body.angularVelocity = -200;
     }
