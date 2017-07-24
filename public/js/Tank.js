@@ -58,7 +58,22 @@ TanksGame.Tank.prototype.update =  function() {
     tank.animations.add('up',[0,1,2], 5);
     tank.animations.play('up', 5, true);
   }
+  if (tank.x <=25){
+     tank.x = 26;
+    }
 
+    if (tank.x >=1273){
+     tank.x = 1272;
+    }
+
+    if (tank.y <=25){
+     tank.y = 26;
+    }
+
+    if (tank.y >=673){
+     tank.y = 672;
+    }
+    
   if (game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)){
     bullet = game.add.sprite(50,50,'bullet');
     bullet.anchor.y = 0.5;
