@@ -31,13 +31,31 @@ app.use('/', function(req, res){
 
 
 
-
-
+let id = 0;
+let tanks = [];
 io.on('connection', function(socket){
-  console.log('a user connected');
-  socket.on('test', function(){
-    console.log('test received');
-    socket.emit('testReceived')
+  socket.on('addPlayer', function(){
+    console.log(tanks);
+    let x;
+    let y;
+    if (tanks.length === 0){
+      x =325;
+      y =175;
+    }else{
+      x = 975;
+      y = 525;
+    }
+    let newPlayer = {
+      x:x,
+      y:y,
+      id: id++
+    }
+    tanks.push(newPlayer)
+    socket.emit('addTank', newPlayer);
+  });
+  socket.on('disconnect', function(){
+    // users--;
+    // console.log(users+'user[s] connected');
   })
 });
 

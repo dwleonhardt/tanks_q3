@@ -3,21 +3,23 @@
   <head>
     <meta charset="utf-8">
     <title>Tanks</title>
-    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: * 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;"> -->
-    <!-- <script src="/socket.io/socket.io.js"></script> -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js" charset="utf-8"></script>
     <script src="https://cdn.jsdelivr.net/phaser/2.6.2/phaser.min.js" charset="utf-8"></script>
     <link rel="stylesheet" href="/css/index.css">
 
     <!-- states -->
-    <script src="js/states/Boot.js" charset="utf-8"></script>
-    <script src="js/states/Preloader.js" charset="utf-8"></script>
-    <script src="js/states/Play.js" charset="utf-8"></script>
+
   </head>
   <body>
     <h1>tanks</h1>
     <div id="gameContainer"></div>
-
+    <script>
+    var game = new Phaser.Game(1300, 700, Phaser.AUTO, 'gameContainer');
+    </script>
+    <script src="js/states/Boot.js" charset="utf-8"></script>
+    <script src="js/states/Preloader.js" charset="utf-8"></script>
+    <script src="js/states/Play.js" charset="utf-8"></script>
     <script src="js/game.js" charset="utf-8"></script>
+
   </body>
 </html>
