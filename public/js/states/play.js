@@ -1,8 +1,22 @@
+
+var Client = {};
+Client.socket = io.connect();
+
+Client.socket.on('testReceived', function(data){
+  console.log('the test was received!');
+})
+Client.addTank = function(){
+  console.log(Client.socket);
+  console.log('its getting called...');
+  Client.socket.emit('test');
+}
+
 TanksGame.Play = function(game){
   this.score = 0;
   this.titleText = null;
   this.ready = false;
   this.direction = 'up';
+
 }
 
 TanksGame.Play.prototype = {
