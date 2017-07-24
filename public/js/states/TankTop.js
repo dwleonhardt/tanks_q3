@@ -12,6 +12,17 @@ TanksGame.Turret.prototype = {
 		turret.rotation = game.physics.arcade.angleToPointer(turret)+ 1.57079633;
 	},
 
+  fire: function(bullet){
+
+
+        nextFire = game.time.now;
+
+        var bull = bullet.getFirstDead();
+
+      
+
+
+  }
 
 
 }
