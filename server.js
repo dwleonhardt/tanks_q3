@@ -1,17 +1,17 @@
 const express = require('express');
 const app = express();
 const server = require('http').Server(app);
-const io = require('socket.io').listen(server);
+const io = require('socket.io')(server);
 const port = process.env.PORT || 8000;
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
-
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
 }
 
-app.use(morgan());
+
+// app.use(morgan());
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -22,16 +22,25 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.use(express.static('public'));
+app.use('/css', express.static(__dirname+'/public/css'));
+app.use('/js', express.static(__dirname+'/public/js'));
+app.use('/assets', express.static(__dirname+'/public/assets'));
+app.use('/', function(req, res){
+  res.sendFile(__dirname+'/public/index.html');
+})
 
-app.get('/', (req, res, next)=>{
-  res.send('hello world');
+
+
+
+
+io.on('connection', function(socket){
+  console.log('a user connected');
+  socket.on('test', function(){
+    console.log('test received');
+    socket.emit('testReceived')
+  })
 });
 
-app.use('/', (req,res,next)=>{
-  res.sendStatus(404);
-});
-
-app.listen(port, ()=>{
+server.listen(port, ()=>{
   console.log('listening on ', port);
 });
