@@ -1,4 +1,3 @@
-// console.log('preloader.js');
 TanksGame.Preloader = function(game){
   // this.titleText= null;
   // this.ready = false;
