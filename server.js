@@ -36,7 +36,6 @@ let tanks = [];
 io.on('connection', function(socket){
   console.log(socket.id);
   socket.on('addPlayer', function(){
-    console.log(socket.id);
     let x;
     let y;
     if (tanks.length === 0){
@@ -55,11 +54,12 @@ io.on('connection', function(socket){
     socket.emit('addTank', newPlayer);
   });
   socket.on('disconnect', function(){
-    console.log(socket.id);
+    let coward = tanks.find(tank=>tank.id=socket.id)
+    let cowardIndex = tanks.indexOf(coward);
+    tanks.splice(cowardIndex, 1);
   })
   socket.on('allPlayers', function(){
-    console.log(socket.id);
-    console.log('someone needs all players');
+    tanks.filter
   });
 });
 

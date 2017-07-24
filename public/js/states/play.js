@@ -24,7 +24,6 @@ TanksGame.Play = function(game){
 
 TanksGame.Play.prototype = {
   addTank: function(x, y, id){
-      console.log('adding a tank');
       let newTank = game.add.sprite(x,y,'blueTank');
       newTank.anchor.x = 0.5;
       newTank.anchor.y = 0.5;
