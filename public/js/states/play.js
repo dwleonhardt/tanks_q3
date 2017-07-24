@@ -86,10 +86,6 @@ TanksGame.Play.prototype = {
   }, this)
 
   var spacebar = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
-
-
-
-
   },
   update: function(){
 
@@ -105,13 +101,14 @@ TanksGame.Play.prototype = {
     }
 
 
-    if (this.input.keyboard.isDown(Phaser.Keyboard.A) && tank.x > 26)
+    if (this.input.keyboard.isDown(Phaser.Keyboard.A) && tank.x > 26) {
 
     tank.body.velocity.x = 0;
     tank.body.velocity.y = 0;
     tank.body.angularVelocity = 0;
-    tank.angle;
+    // tank.angle;
 
+    }
     if (game.input.keyboard.isDown(Phaser.Keyboard.A))
 
     {
@@ -122,11 +119,30 @@ TanksGame.Play.prototype = {
         tank.body.angularVelocity = 200;
     }
 
-    if (game.input.keyboard.isDown(Phaser.Keyboard.W) && tank.x >= 26 && tank.x <= 1274 && tank.y >= 26 && tank.y <= 674)
+    if (game.input.keyboard.isDown(Phaser.Keyboard.W))
     {
-        game.physics.arcade.velocityFromAngle(tank.angle-90, 300, tank.body.velocity);
+        game.physics.arcade.velocityFromAngle(
+          tank.angle-90,
+          300,
+          tank.body.velocity
+        );
     }
 
+    if (tank.x <=25){
+     tank.x = 26;
+    }
+
+    if (tank.x >=1273){
+     tank.x = 1272;
+    }
+
+    if (tank.y <=25){
+     tank.y = 26;
+    }
+
+    if (tank.y >=673){
+     tank.y = 672;
+    }
 
     turret.x = tank.x;
     turret.y = tank.y;
@@ -161,4 +177,4 @@ TanksGame.Play.prototype = {
     //     tank.y += 3;
     // }
   }
-}
+};
