@@ -44,19 +44,19 @@ TanksGame.Play.prototype = {
 
     this.Turret = new TanksGame.Turret(this.game, turret);
 
-    var leftKey = this.game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
+    // var leftKey = this.game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
     var downKey = this.game.input.keyboard.addKey(Phaser.Keyboard.DOWN);
     var rightKey = this.game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
     var upKey = this.game.input.keyboard.addKey(Phaser.Keyboard.UP);
+    //
+    // leftKey.onDown.add(function(move){
+    //   tank.animations.add('left',[3,4,5], 9);
+    //   tank.animations.play('left', 9, true);
+    // }, this)
 
-    leftKey.onDown.add(function(move){
-      tank.animations.add('left',[3,4,5], 9);
-      tank.animations.play('left', 9, true);
-    }, this)
-
-    leftKey.onUp.add(function(){
-      tank.animations.stop(null, true);
-    }, this)
+    // leftKey.onUp.add(function(){
+    //   tank.animations.stop(null, true);
+    // }, this)
 
     downKey.onDown.add(function(move){
       tank.animations.add('down',[6,7,8], 9);
@@ -150,13 +150,14 @@ TanksGame.Play.prototype = {
 
   turret.aim = this.Turret.aim(turret);
 
+
     if (this.input.keyboard.isDown(Phaser.Keyboard.LEFT) && tank.x > 26)
     {
-        tank.x -= 3;
+        tank.angle -= 4;
     }
     else if (this.input.keyboard.isDown(Phaser.Keyboard.RIGHT)&& tank.x < 1274)
     {
-        tank.x += 3;
+      tank.angle += 4;
     }
 
     if (this.input.keyboard.isDown(Phaser.Keyboard.UP)&& tank.y > 26)
