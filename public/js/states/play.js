@@ -106,10 +106,11 @@ TanksGame.Play.prototype = {
         tank.body.angularVelocity = 200;
     }
 
-    if (game.input.keyboard.isDown(Phaser.Keyboard.W))
+    if (game.input.keyboard.isDown(Phaser.Keyboard.W) && tank.x >= 26 && tank.x <= 1274 && tank.y >= 26 && tank.y <= 674)
     {
         game.physics.arcade.velocityFromAngle(tank.angle-90, 300, tank.body.velocity);
     }
+
 
     turret.x = tank.x;
     turret.y = tank.y;
