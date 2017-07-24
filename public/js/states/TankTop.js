@@ -1,9 +1,6 @@
 TanksGame.Turret = function (game, turret) {
 	this.game = game;
   this.turret = turret;
-
-
-
 }
 
 TanksGame.Turret.prototype = {
