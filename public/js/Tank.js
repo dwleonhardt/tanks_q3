@@ -72,12 +72,4 @@ TanksGame.Tank.prototype.update =  function() {
     if (tank.y >=673){
      tank.y = 672;
     }
-    
-  if (game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)){
-    bullet = game.add.sprite(50,50,'bullet');
-    bullet.anchor.y = 0.5;
-    bullet.anchor.x = 0.5;
-    bullet.x = tank.x;
-    bullet.y = tank.y;
-  }
 }
