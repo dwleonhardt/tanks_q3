@@ -9,6 +9,9 @@ Client.socket.on('addTank', function({x,y,id}){
 Client.addPlayer = function(){
   Client.socket.emit('addPlayer');
 }
+Client.renderPlayers = function(){
+  Client.socket.emit('allPlayers')
+}
 
 TanksGame.Play = function(game){
   this.score = 0;
@@ -20,7 +23,7 @@ TanksGame.Play = function(game){
 
 
 TanksGame.Play.prototype = {
-    addTank: function(x, y, id){
+  addTank: function(x, y, id){
       console.log('adding a tank');
       let newTank = game.add.sprite(x,y,'blueTank');
       newTank.anchor.x = 0.5;
@@ -35,6 +38,7 @@ TanksGame.Play.prototype = {
   create: function(){
     TanksGame.players = {};
     Client.addPlayer();
+    Client.renderPlayers();
     // this.add.sprite(0,0,'bg');
     // tank = this.add.sprite(650, 350, 'blueTank');
   //   tank.anchor.x = 0.5;

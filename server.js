@@ -31,11 +31,12 @@ app.use('/', function(req, res){
 
 
 
-let id = 0;
+
 let tanks = [];
 io.on('connection', function(socket){
+  console.log(socket.id);
   socket.on('addPlayer', function(){
-    console.log(tanks);
+    console.log(socket.id);
     let x;
     let y;
     if (tanks.length === 0){
@@ -48,15 +49,18 @@ io.on('connection', function(socket){
     let newPlayer = {
       x:x,
       y:y,
-      id: id++
+      id: socket.id
     }
     tanks.push(newPlayer)
     socket.emit('addTank', newPlayer);
   });
   socket.on('disconnect', function(){
-    // users--;
-    // console.log(users+'user[s] connected');
+    console.log(socket.id);
   })
+  socket.on('allPlayers', function(){
+    console.log(socket.id);
+    console.log('someone needs all players');
+  });
 });
 
 server.listen(port, ()=>{
