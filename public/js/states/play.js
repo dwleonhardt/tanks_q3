@@ -132,23 +132,35 @@ TanksGame.Play.prototype = {
   spacebar.onDown.add(function(shoot) {
     var tankX = tank.x;
     var tankY = tank.y;
-    console.log(tankX, tankY);
+
 
     bullet = this.add.sprite(50,50,'bullet');
-    bullet.anchor.y = 0.5;
-    bullet.anchor.x = 0.5;
-    bullet.x = tankX;
-    bullet.y = tankY;
+    // bullet.createMultiple(50, 'bullet');
+    bullet = game.add.group();
+    bullet.enableBody = true;
+    bullet.physicsBodyType = Phaser.Physics.ARCADE;
+
+    bullet.setAll('checkWorldBounds', true);
+    console.log(this);
+    // bullet.anchor.y = 0.5;
+    // bullet.anchor.x = 0.5;
+    // bullet.x = tankX;
+    // bullet.y = tankY;
+    // console.log(this);
+    // TanksGame.Shooter.fire(bullet);
+
   },this)
 
 
   },
   update: function(){
 
+
     turret.x = tank.x;
     turret.y = tank.y;
 
-  turret.aim = this.Turret.aim(turret);
+    turret.aim = this.Turret.aim(turret);
+
 
     if (this.input.keyboard.isDown(Phaser.Keyboard.LEFT) && tank.x > 26)
     {
