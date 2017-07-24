@@ -1,8 +1,9 @@
-TanksGame.Tank = function () {
-  tank = game.add.sprite(650, 350, 'blueTank');
+TanksGame.Tank = function (x,y,id) {
+  this.id = id;
+  tank = game.add.sprite(x, y, 'blueTank');
   tank.anchor.setTo(0.5, 0.5);
 
-  turret = game.add.sprite(650, 350, 'blueTurret', 'blueTank');
+  turret = game.add.sprite(x, y, 'blueTurret', 'blueTank');
   turret.anchor.setTo(0.5, 0.6);
 
   game.physics.enable(tank, Phaser.Physics.ARCADE);

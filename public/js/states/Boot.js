@@ -1,4 +1,4 @@
-// console.log('boot.js');
+
 var TanksGame = {};
 TanksGame.Boot = function(game){
 

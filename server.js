@@ -34,7 +34,6 @@ app.use('/', function(req, res){
 
 let tanks = [];
 io.on('connection', function(socket){
-  console.log(socket.id);
   socket.on('addPlayer', function(){
     let x;
     let y;
@@ -50,13 +49,15 @@ io.on('connection', function(socket){
       y:y,
       id: socket.id
     }
-    tanks.push(newPlayer)
+    tanks.push(newPlayer);
+    console.log(tanks);
     socket.emit('addTank', newPlayer);
   });
   socket.on('disconnect', function(){
     let coward = tanks.find(tank=>tank.id=socket.id)
     let cowardIndex = tanks.indexOf(coward);
     tanks.splice(cowardIndex, 1);
+    console.log(tanks);
   })
   socket.on('allPlayers', function(){
     tanks.filter
