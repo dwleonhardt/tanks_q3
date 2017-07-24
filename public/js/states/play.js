@@ -24,16 +24,25 @@ TanksGame.Play.prototype = {
     // this.load.image('bg', '/assets/background.png');
     this.load.spritesheet('blueTank', '/assets/blue_tank.png', 50,50,12);
     this.load.spritesheet('bullet', '/assets/bullet.png', 50, 50, 1);
+    this.load.spritesheet('blueTurret', '/assets/blue_tank_top.png', 50, 50, 1);
   },
   create: function(){
+
+    game.physics.startSystem(Phaser.Physics.ARCADE);
     // this.add.sprite(0,0,'bg');
     tank = this.add.sprite(650, 350, 'blueTank');
-    tank.anchor.x = 0.5;
-    tank.anchor.y = 0.5;
+    tank.anchor.setTo(0.5, 0.5);
+
+    turret = game.add.sprite(650, 350, 'blueTurret', 'blueTank');
+    turret.anchor.setTo(0.5, 0.6);
+
+
     tank.animations.add('up',[0,1,2], 3, true);
     tank.animations.add('down',[6,7,8], 3, true);
     tank.animations.add('right',[9,10,11], 3, true);
     tank.animations.play('up', 3, false);
+
+    this.Turret = new TanksGame.Turret(this.game, turret);
 
     var leftKey = this.game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
     var downKey = this.game.input.keyboard.addKey(Phaser.Keyboard.DOWN);
@@ -135,6 +144,11 @@ TanksGame.Play.prototype = {
 
   },
   update: function(){
+
+    turret.x = tank.x;
+    turret.y = tank.y;
+
+  turret.aim = this.Turret.aim(turret);
 
     if (this.input.keyboard.isDown(Phaser.Keyboard.LEFT) && tank.x > 26)
     {
