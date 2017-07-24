@@ -4,20 +4,20 @@ Client.socket = io.connect();
 
 Client.socket.on('testReceived', function(data){
   console.log('the test was received!');
-})
+});
+
 Client.addTank = function(){
   console.log(Client.socket);
   console.log('its getting called...');
   Client.socket.emit('test');
-}
+};
 
 TanksGame.Play = function(game){
   this.score = 0;
   this.titleText = null;
   this.ready = false;
   this.direction = 'up';
-
-}
+};
 
 TanksGame.Play.prototype = {
   preload: function(){
@@ -27,7 +27,6 @@ TanksGame.Play.prototype = {
     this.load.spritesheet('blueTurret', '/assets/blue_tank_top.png', 50, 50, 1);
   },
   create: function(){
-
 
     game.physics.startSystem(Phaser.Physics.ARCADE);
     // this.add.sprite(0,0,'bg');
@@ -101,14 +100,13 @@ TanksGame.Play.prototype = {
     }
 
 
-    if (this.input.keyboard.isDown(Phaser.Keyboard.A) && tank.x > 26) {
+    if (this.input.keyboard.isDown(Phaser.Keyboard.A) && tank.x > 26) 
 
     tank.body.velocity.x = 0;
     tank.body.velocity.y = 0;
     tank.body.angularVelocity = 0;
-    // tank.angle;
+    tank.angle;
 
-    }
     if (game.input.keyboard.isDown(Phaser.Keyboard.A))
 
     {
