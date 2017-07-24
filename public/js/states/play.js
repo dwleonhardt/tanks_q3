@@ -36,6 +36,8 @@ TanksGame.Play.prototype = {
     turret = game.add.sprite(650, 350, 'blueTurret', 'blueTank');
     turret.anchor.setTo(0.5, 0.6);
 
+    game.physics.enable(tank, Phaser.Physics.ARCADE);
+
 
     tank.animations.add('up',[0,1,2], 3, true);
     tank.animations.add('down',[6,7,8], 3, true);
@@ -78,7 +80,6 @@ TanksGame.Play.prototype = {
   spacebar.onDown.add(function(shoot) {
     var tankX = tank.x;
     var tankY = tank.y;
-    console.log(tankX, tankY);
 
     bullet = this.add.sprite(50,50,'bullet');
     bullet.anchor.y = 0.5;
@@ -91,37 +92,56 @@ TanksGame.Play.prototype = {
   },
   update: function(){
 
+    tank.body.velocity.x = 0;
+    tank.body.velocity.y = 0;
+    tank.body.angularVelocity = 0;
+    tank.angle;
+
+    if (game.input.keyboard.isDown(Phaser.Keyboard.A))
+    {
+        tank.body.angularVelocity = -200;
+    }
+    else if (game.input.keyboard.isDown(Phaser.Keyboard.D))
+    {
+        tank.body.angularVelocity = 200;
+    }
+
+    if (game.input.keyboard.isDown(Phaser.Keyboard.W))
+    {
+        game.physics.arcade.velocityFromAngle(tank.angle-90, 300, tank.body.velocity);
+    }
+
     turret.x = tank.x;
     turret.y = tank.y;
 
     turret.aim = this.Turret.aim(turret);
-
-    if (this.input.keyboard.isDown(Phaser.Keyboard.A) && tank.x > 26)
-    {
-        this.Tank.rotateLeft(tank);
-    }
-    else if (this.input.keyboard.isDown(Phaser.Keyboard.D)&& tank.x < 1274)
-    {
-      this.Tank.rotateRight(tank);
-    }
-
-    if (this.input.keyboard.isDown(Phaser.Keyboard.UP)&& tank.y > 26)
-    {
-        currentSpeed = 300;
-    }
-    else if (this.input.keyboard.isDown(Phaser.Keyboard.DOWN)&& tank.y < 674)
-    {
-        currentSpeed = 300;
-        // console.log(tank);
-    }
-
-    if (this.input.keyboard.isDown(Phaser.Keyboard.W)&& tank.y > 26)
-    {
-        tank.y -= 3;
-    }
-    else if (this.input.keyboard.isDown(Phaser.Keyboard.S)&& tank.y < 674)
-    {
-        tank.y += 3;
-    }
+    //
+    // if (this.input.keyboard.isDown(Phaser.Keyboard.A) && tank.x > 26)
+    // {
+    //     this.Tank.rotateLeft(tank);
+    // }
+    // else if (this.input.keyboard.isDown(Phaser.Keyboard.D)&& tank.x < 1274)
+    // {
+    //   this.Tank.rotateRight(tank);
+    // }
+    //
+    // if (this.input.keyboard.isDown(Phaser.Keyboard.UP)&& tank.y > 26)
+    // {
+    //     currentSpeed = 300;
+    // }
+    // else if (this.input.keyboard.isDown(Phaser.Keyboard.DOWN)&& tank.y < 674)
+    // {
+    //     currentSpeed = 300;
+    //     // console.log(tank);
+    // }
+    //
+    // if (this.input.keyboard.isDown(Phaser.Keyboard.W)&& tank.y > 26)
+    // {
+    //     tank.y -= 3;
+    // }
+    // else if (this.input.keyboard.isDown(Phaser.Keyboard.S)&& tank.y < 674)
+    // {
+    //     tank.y += 3;
+    // }
   }
 }
