@@ -127,6 +127,22 @@ TanksGame.Play.prototype = {
         game.physics.arcade.velocityFromAngle(tank.angle-90, 300, tank.body.velocity);
     }
 
+  if (tank.x <=25){
+   tank.x = 26;
+  }
+
+  if (tank.x >=1273){
+   tank.x = 1272;
+  }
+
+  if (tank.y <=25){
+   tank.y = 26;
+  }
+
+  if (tank.y >=673){
+   tank.y = 672;
+  }
+
     turret.x = tank.x;
     turret.y = tank.y;
 
