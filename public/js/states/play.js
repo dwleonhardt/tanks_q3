@@ -1,20 +1,3 @@
-var Client = {};
-Client.socket = io.connect();
-
-Client.socket.on('addTank', function({x,y,id}){
-  TanksGame.Play.prototype.addMe(x,y,id);
-})
-Client.socket.on('newBaddy', function({x,y,id}){
-  TanksGame.Play.prototype.addFoe(x,y,id);
-})
-Client.socket.on('allPrev', function(data){
-  console.log(data);
-  data.forEach((tank)=>{TanksGame.Play.prototype.addFoe(tank.x,tank.y,tank.id);})
-})
-Client.addPlayer = function(){
-  Client.socket.emit('addPlayer');
-}
-
 
 TanksGame.Play = function(game){
   this.score = 0;
@@ -39,12 +22,17 @@ TanksGame.Play.prototype = {
     game.physics.startSystem(Phaser.Physics.ARCADE);
     Client.addPlayer();
   },
+  destroyTheWeak:function(id){
+    delete TanksGame.Play.prototype.allTanks[id];
+    game.world.children = game.world.children.filter((sprite)=>{return sprite.id != id});
+  },
   addFoe: function(x,y,id){
-    console.log(x,y,id);
     enemy = new TanksGame.EnemyTank(x,y,id);
+    TanksGame.Play.prototype.allTanks[id] = enemy;
   },
   addMe: (x,y,id)=>{
-    TanksGame.Play.prototype.allTanks[id]=new TanksGame.Tank(x,y,id);
+    let me = new TanksGame.Tank(x,y,id);
+    TanksGame.Play.prototype.allTanks[id]= me;
     TanksGame.Play.prototype.ready = true;
   },
   update: function(){

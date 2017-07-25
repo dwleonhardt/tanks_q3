@@ -63,6 +63,7 @@ io.on('connection', function(socket){
     socket.broadcast.emit('newBaddy', newPlayer);
   });
   socket.on('disconnect', function(){
+    socket.broadcast.emit('quitter', socket.id);
     let coward = tanks.find(tank=>tank.id=socket.id)
     let cowardIndex = tanks.indexOf(coward);
     tanks.splice(cowardIndex, 1);
