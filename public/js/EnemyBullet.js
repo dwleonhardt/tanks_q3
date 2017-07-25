@@ -1,17 +1,15 @@
 TanksGame.EnemyBullet = function (x,y,id) {
   bullets = game.add.group();
   bullets.enableBody = true;
-  bullets.createMultiple(50, 'bullet');
+  bullets.createMultiple(50000000000000000000, 'bullet');
   bullets.setAll('checkWorldBounds', true);
   bullets.setAll('outOfBoundsKill', true);
 
-  fireRate = 100;
-  nextFire = 0;
+
 }
 
 TanksGame.EnemyBullet.prototype.update =  (mouseX, mouseY, bulletX, bulletY)=> {
 
-  nextFire = game.time.now + fireRate;
 
   var bullet = bullets.getFirstDead();
 

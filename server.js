@@ -33,29 +33,41 @@ app.use('/', function(req, res){
 
 
 let tanks = [];
+let startPos = [{
+      pos:1,
+      x:325,
+      y:175},
+    {
+      pos:2,
+      x:975,
+      y:525
+    },{
+      pos: 3,
+      x:325,
+      y:525
+    },{
+      pos: 4,
+      x:975,
+      y:175
+    },{
+      pos:5,
+      x:650,
+      y:350
+}
+]
+let indexToUse = 0;
 io.on('connection', function(socket){
-  socket.on('addPlayer', function(){
+  socket.on('addPlayer', function(color){
     let x;
     let y;
-    if (tanks.length === 0){
-      x =325;
-      y =175;
-    }else if(tanks.length ===1){
-      x = 975;
-      y = 525;
-    }
-    else if(tanks.length ===2){
-      x = 325;
-      y = 525;
-    } else if(tanks.length===3){
-      x = 975;
-      y = 175;
-    }
     let newPlayer = {
-      x:x,
-      y:y,
-      id: socket.id
+      x:startPos[indexToUse].x,
+      y:startPos[indexToUse].y,
+      id: socket.id,
+      color: color
     }
+    indexToUse++;
+    indexToUse===5?indexToUse=0:null;
     socket.emit('allPrev', tanks)
     tanks.push(newPlayer);
     console.log(tanks);
@@ -64,29 +76,35 @@ io.on('connection', function(socket){
   });
   socket.on('disconnect', function(){
     socket.broadcast.emit('quitter', socket.id);
-    let coward = tanks.find(tank=>tank.id=socket.id)
-    let cowardIndex = tanks.indexOf(coward);
-    tanks.splice(cowardIndex, 1);
+    for(let i =0; i<tanks.length; i++){
+      if (tanks[i].id === socket.id){
+        tanks.splice(i,1);
+      }
+    }
     console.log(tanks);
   })
   socket.on('allPlayers', function(){
     tanks.filter
   });
   socket.on('moveStream', function(info){
-    if(tanks.length > 0){
-      // let moving = tanks.find((tank)=>{ return tank.id===info.id;});
-      // console.log(moving);
-      // moving.x = info.x;
-      // moving.y = info.y;
-      // let movingIndex = tanks.indexOf(moving);
+    tanks.forEach((tank)=>{
+      if(tank.id===info.id){
+        tank.x = info.x;
+        tank.y = info.y;
+      }
+    });
       socket.broadcast.emit('moveStream', info);
-    }
   });
   socket.on('shootStream', function(info){
     socket.broadcast.emit('shootStream', info);
   });
 });
-
-server.listen(port, ()=>{
-  console.log('listening on ', port);
-});
+if (process.env.NODE_ENV !== 'production') {
+  server.listen(port,'10.9.22.254', ()=>{
+    console.log('listening on ', port);
+  });
+}else{
+  server.listen(port,()=>{
+    console.log('listening on ', port);
+  });
+}
