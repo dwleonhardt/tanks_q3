@@ -25,18 +25,18 @@ TanksGame.Play.prototype = {
   create: function(){
     allTanks = {};
     game.physics.startSystem(Phaser.Physics.ARCADE);
-    Client.addPlayer();
+    Client.addPlayer(selections.color);
   },
   destroyTheWeak:function(id){
     delete TanksGame.Play.prototype.allTanks[id];
     game.world.children = game.world.children.filter((sprite)=>{return sprite.id != id});
   },
   addFoe: function(x,y,id,color){
-    enemy = new TanksGame.EnemyTank(x,y,id,'purple');
+    enemy = new TanksGame.EnemyTank(x,y,id,color);
     TanksGame.Play.prototype.allTanks[id] = enemy;
   },
   addMe: (x,y,id,color)=>{
-    let me = new TanksGame.Tank(x,y,id, 'purple');
+    let me = new TanksGame.Tank(x,y,id,color);
     TanksGame.Play.prototype.allTanks[id]= me;
     TanksGame.Play.prototype.ready = true;
   },

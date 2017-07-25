@@ -34,7 +34,7 @@ app.use('/', function(req, res){
 
 let tanks = [];
 io.on('connection', function(socket){
-  socket.on('addPlayer', function(){
+  socket.on('addPlayer', function(color){
     let x;
     let y;
     if (tanks.length === 0){
@@ -54,7 +54,8 @@ io.on('connection', function(socket){
     let newPlayer = {
       x:x,
       y:y,
-      id: socket.id
+      id: socket.id,
+      color: color
     }
     socket.emit('allPrev', tanks)
     tanks.push(newPlayer);
