@@ -1,10 +1,12 @@
 TanksGame.Tank = function (x,y,id) {
   this.id = id;
   tank = game.add.sprite(x, y, 'blueTank');
+  tank.id = id;
   tank.anchor.setTo(0.5, 0.5);
 
   turret = game.add.sprite(x, y, 'blueTurret', 'blueTank');
   turret.anchor.setTo(0.5, 0.6);
+  turret.id = id;
 
 
   bullets = game.add.group();
@@ -20,6 +22,13 @@ TanksGame.Tank = function (x,y,id) {
 }
 
 TanksGame.Tank.prototype.update =  function() {
+  Client.socket.emit('moveStream', {
+    x: tank.x,
+    y: tank.y,
+    id: tank.id,
+    tankAngle: tank.angle,
+    turretAngle: turret.angle
+  });
   turret.x = tank.x;
   turret.y = tank.y;
   turret.rotation = game.physics.arcade.angleToPointer(turret)+ 1.57079633;
