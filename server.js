@@ -82,6 +82,9 @@ io.on('connection', function(socket){
       socket.broadcast.emit('moveStream', info);
     }
   });
+  socket.on('shootStream', function(info){
+    socket.broadcast.emit('shootStream', info);
+  });
 });
 
 server.listen(port, ()=>{
