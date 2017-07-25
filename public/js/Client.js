@@ -25,8 +25,7 @@ Client.socket.on('moveStream', function({x,y,id,tankAngle,turretAngle}){
   })
 });
 Client.socket.on('shootStream', function({mouseX, mouseY, bulletX, bulletY}){
-  console.log(bulletY);
-  console.log(game.world);
+  TanksGame.EnemyBullet.prototype.update(mouseX, mouseY, bulletX, bulletY)
 });
 Client.socket.on('quitter', function(info){
   TanksGame.Play.prototype.destroyTheWeak(info);

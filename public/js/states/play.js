@@ -40,4 +40,5 @@ TanksGame.Play.prototype = {
       TanksGame.Play.prototype.allTanks[tank].update();
     }
   }
+  
 }
