@@ -6,7 +6,7 @@ TanksGame.Play = function(game){
   this.direction = 'up';
 }
 
-
+console.log('here');
 TanksGame.Play.prototype = {
   allTanks: {},
   ready: false,
