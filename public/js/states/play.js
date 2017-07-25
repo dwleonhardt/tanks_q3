@@ -11,26 +11,38 @@ TanksGame.Play.prototype = {
   ready: false,
   preload: function(){
     this.load.spritesheet('blueTank', '/assets/blue_tank.png', 50,50,12);
+    this.load.spritesheet('purpleTank', '/assets/purple_tank.png', 50,50,12);
     this.load.spritesheet('redTank', '/assets/red_tank.png', 50,50,12);
+    this.load.spritesheet('silverTank', '/assets/silver_tank.png', 50,50,12);
+    this.load.spritesheet('greenTank', '/assets/green_tank.png', 50,50,12);
     this.load.spritesheet('bullet', '/assets/bullet.png', 50, 50, 1);
     this.load.spritesheet('blueTurret', '/assets/blue_tank_top.png', 50, 50, 1);
     this.load.spritesheet('redTurret', '/assets/red_tank_top.png', 50, 50, 1);
+    this.load.spritesheet('silverTurret', '/assets/silver_tank_top.png', 50, 50, 1);
+    this.load.spritesheet('greenTurret', '/assets/green_tank_top.png', 50, 50, 1);
+    this.load.spritesheet('purpleTurret', '/assets/purple_tank_top.png', 50, 50, 1);
   },
   create: function(){
     allTanks = {};
     game.physics.startSystem(Phaser.Physics.ARCADE);
-    Client.addPlayer();
+    Client.addPlayer(selections.color);
   },
   destroyTheWeak:function(id){
+    console.log(id+' is a coward!!');
     delete TanksGame.Play.prototype.allTanks[id];
     game.world.children = game.world.children.filter((sprite)=>{return sprite.id != id});
   },
-  addFoe: function(x,y,id){
-    enemy = new TanksGame.EnemyTank(x,y,id);
+  addFoe: function(x,y,id,color){
+    enemy = new TanksGame.EnemyTank(x,y,id,color);
     TanksGame.Play.prototype.allTanks[id] = enemy;
   },
+<<<<<<< HEAD
   addMe: function(x,y,id) {
     me = new TanksGame.Tank(x,y,id);
+=======
+  addMe: (x,y,id,color)=>{
+    let me = new TanksGame.Tank(x,y,id,color);
+>>>>>>> 96b145ff348a3bc79f95ae05cd07e1d59a6fd99b
     TanksGame.Play.prototype.allTanks[id]= me;
     TanksGame.Play.prototype.ready = true;
   },
@@ -40,4 +52,8 @@ TanksGame.Play.prototype = {
       TanksGame.Play.prototype.allTanks[tank].update();
     }
   }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 96b145ff348a3bc79f95ae05cd07e1d59a6fd99b
 }

@@ -1,14 +1,15 @@
 var Client = {};
 Client.socket = io.connect();
 
-Client.socket.on('addTank', function({x,y,id}){
-  TanksGame.Play.prototype.addMe(x,y,id);
+Client.socket.on('addTank', function({x,y,id,color}){
+  TanksGame.Play.prototype.addMe(x,y,id,color);
 });
-Client.socket.on('newBaddy', function({x,y,id}){
-  TanksGame.Play.prototype.addFoe(x,y,id);
+Client.socket.on('newBaddy', function({x,y,id,color}){
+  TanksGame.Play.prototype.addFoe(x,y,id,color);
 });
 Client.socket.on('allPrev', function(data){
-  data.forEach((tank)=>{TanksGame.Play.prototype.addFoe(tank.x,tank.y,tank.id);})
+  data.forEach((tank)=>{TanksGame.Play.prototype.addFoe(tank.x,tank.y,tank.id,tank.color);
+  });
 });
 Client.socket.on('moveStream', function({x,y,id,tankAngle,turretAngle}){
   var enemyLocation = [];
@@ -44,12 +45,13 @@ Client.socket.on('quitter', function(info){
   TanksGame.Play.prototype.destroyTheWeak(info);
 });
 
+
 // Client.socket.on('collision',
 // function(info) {
 //   console.log('info clientjs', info);
 //   TanksGame.Tank.prototype.update(info);
 // });
 
-Client.addPlayer = function(){
-  Client.socket.emit('addPlayer');
-}
+Client.addPlayer = function(color){
+  Client.socket.emit('addPlayer', color);
+};
