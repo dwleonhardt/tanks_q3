@@ -11,6 +11,7 @@ TanksGame.Play.prototype = {
   ready: false,
   preload: function(){
     this.load.spritesheet('blueTank', '/assets/blue_tank.png', 50,50,12);
+    this.load.spritesheet('purpleTank', '/assets/purple_tank.png', 50,50,12);
     this.load.spritesheet('redTank', '/assets/red_tank.png', 50,50,12);
     this.load.spritesheet('silverTank', '/assets/silver_tank.png', 50,50,12);
     this.load.spritesheet('greenTank', '/assets/green_tank.png', 50,50,12);
@@ -19,6 +20,7 @@ TanksGame.Play.prototype = {
     this.load.spritesheet('redTurret', '/assets/red_tank_top.png', 50, 50, 1);
     this.load.spritesheet('silverTurret', '/assets/silver_tank_top.png', 50, 50, 1);
     this.load.spritesheet('greenTurret', '/assets/green_tank_top.png', 50, 50, 1);
+    this.load.spritesheet('purpleTurret', '/assets/purple_tank_top.png', 50, 50, 1);
   },
   create: function(){
     allTanks = {};
@@ -30,11 +32,11 @@ TanksGame.Play.prototype = {
     game.world.children = game.world.children.filter((sprite)=>{return sprite.id != id});
   },
   addFoe: function(x,y,id,color){
-    enemy = new TanksGame.EnemyTank(x,y,id,'green');
+    enemy = new TanksGame.EnemyTank(x,y,id,'purple');
     TanksGame.Play.prototype.allTanks[id] = enemy;
   },
   addMe: (x,y,id,color)=>{
-    let me = new TanksGame.Tank(x,y,id, 'green');
+    let me = new TanksGame.Tank(x,y,id, 'purple');
     TanksGame.Play.prototype.allTanks[id]= me;
     TanksGame.Play.prototype.ready = true;
   },
