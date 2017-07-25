@@ -1,10 +1,10 @@
 TanksGame.EnemyTank = function (x,y,id) {
   this.id = id;
-  tank = game.add.sprite(x, y, 'redTank');
-  tank.anchor.setTo(0.5, 0.5);
+  enemyTank = game.add.sprite(x, y, 'redTank');
+  enemyTank.anchor.setTo(0.5, 0.5);
 
-  turret = game.add.sprite(x, y, 'redTurret', 'redTank');
-  turret.anchor.setTo(0.5, 0.6);
+  enemyTurret = game.add.sprite(x, y, 'redTurret', 'redTank');
+  enemyTurret.anchor.setTo(0.5, 0.6);
 
 
   // bullets = game.add.group();
@@ -13,7 +13,7 @@ TanksGame.EnemyTank = function (x,y,id) {
   // bullets.setAll('checkWorldBounds', true);
   // bullets.setAll('outOfBoundsKill', true);
 
-  game.physics.enable(tank, Phaser.Physics.ARCADE);
+  game.physics.enable(enemyTank, Phaser.Physics.ARCADE);
 
   // fireRate = 100;
   // nextFire = 0;

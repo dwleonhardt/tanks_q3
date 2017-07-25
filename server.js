@@ -56,6 +56,7 @@ io.on('connection', function(socket){
       y:y,
       id: socket.id
     }
+    socket.emit('allPrev', tanks)
     tanks.push(newPlayer);
     console.log(tanks);
     socket.emit('addTank', newPlayer);
