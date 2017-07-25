@@ -83,7 +83,12 @@ io.on('connection', function(socket){
     }
   });
 });
-
-server.listen(port,'10.9.22.254', ()=>{
-  console.log('listening on ', port);
-});
+if (process.env.NODE_ENV !== 'production') {
+  server.listen(port,'10.9.22.254', ()=>{
+    console.log('listening on ', port);
+  });
+}else{
+  server.listen(port,()=>{
+    console.log('listening on ', port);
+  });
+}
