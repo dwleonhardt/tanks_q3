@@ -32,13 +32,36 @@ app.use('/', function(req, res){
 
 
 
-
+let tanks = [];
 io.on('connection', function(socket){
-  console.log('a user connected');
-  socket.on('test', function(){
-    console.log('test received');
-    socket.emit('testReceived')
+  socket.on('addPlayer', function(){
+    let x;
+    let y;
+    if (tanks.length === 0){
+      x =325;
+      y =175;
+    }else{
+      x = 975;
+      y = 525;
+    }
+    let newPlayer = {
+      x:x,
+      y:y,
+      id: socket.id
+    }
+    tanks.push(newPlayer);
+    console.log(tanks);
+    socket.emit('addTank', newPlayer);
+  });
+  socket.on('disconnect', function(){
+    let coward = tanks.find(tank=>tank.id=socket.id)
+    let cowardIndex = tanks.indexOf(coward);
+    tanks.splice(cowardIndex, 1);
+    console.log(tanks);
   })
+  socket.on('allPlayers', function(){
+    tanks.filter
+  });
 });
 
 server.listen(port, ()=>{
