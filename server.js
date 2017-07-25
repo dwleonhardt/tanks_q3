@@ -40,18 +40,27 @@ io.on('connection', function(socket){
     if (tanks.length === 0){
       x =325;
       y =175;
-    }else{
+    }else if(tanks.length ===1){
       x = 975;
       y = 525;
+    }
+    else if(tanks.length ===2){
+      x = 325;
+      y = 525;
+    } else if(tanks.length===3){
+      x = 975;
+      y = 175;
     }
     let newPlayer = {
       x:x,
       y:y,
       id: socket.id
     }
+    socket.emit('allPrev', tanks)
     tanks.push(newPlayer);
     console.log(tanks);
     socket.emit('addTank', newPlayer);
+    socket.broadcast.emit('newBaddy', newPlayer);
   });
   socket.on('disconnect', function(){
     let coward = tanks.find(tank=>tank.id=socket.id)
