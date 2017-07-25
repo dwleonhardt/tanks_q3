@@ -8,6 +8,7 @@ TanksGame.Menu = function(game){
 TanksGame.Menu.prototype = {
   moveOn : false,
   preload: function(){
+    this.load.image('bg', '/assets/menu.png', 1300, 700);
     this.load.spritesheet('blueTank', '/assets/blue_tank.png', 50,50,3);
     this.load.spritesheet('purpleTank', '/assets/purple_tank.png', 50,50,3);
     this.load.spritesheet('redTank', '/assets/red_tank.png', 50,50,13);
@@ -21,7 +22,7 @@ TanksGame.Menu.prototype = {
     this.load.spritesheet('purpleTurret', '/assets/purple_tank_top.png', 50, 50, 1);
   },
   create: function(){
-    this.stage.backgroundColor = '#000000';
+    let bg = this.add.image(0,0, 'bg')
     let anchor = {x:0.5,y:0.5};
     console.log('menu opened');
     const redTank = this.add.sprite(650,300,'redTank');

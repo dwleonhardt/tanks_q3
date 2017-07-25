@@ -28,6 +28,7 @@ TanksGame.Play.prototype = {
     Client.addPlayer(selections.color);
   },
   destroyTheWeak:function(id){
+    console.log(id+' is a coward!!');
     delete TanksGame.Play.prototype.allTanks[id];
     game.world.children = game.world.children.filter((sprite)=>{return sprite.id != id});
   },
@@ -46,4 +47,5 @@ TanksGame.Play.prototype = {
       TanksGame.Play.prototype.allTanks[tank].update();
     }
   }
+
 }

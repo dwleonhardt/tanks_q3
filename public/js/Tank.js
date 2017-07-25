@@ -48,8 +48,15 @@ TanksGame.Tank.prototype.update =  function() {
 
       bullet.reset(turret.x, turret.y);
 
-
       game.physics.arcade.moveToPointer(bullet, 300);
+
+      Client.socket.emit('shootStream', {
+        mouseX: game.input.mousePointer.x,
+        mouseY: game.input.mousePointer.y,
+        bulletX: bullet.x,
+        bulletY: turret.y
+      });
+
     }
   }
 
