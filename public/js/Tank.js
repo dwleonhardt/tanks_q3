@@ -21,14 +21,27 @@ TanksGame.Tank = function (x,y,id) {
   nextFire = 0;
 }
 
-TanksGame.Tank.prototype.update =  function() {
+TanksGame.Tank.prototype.update =  function(enemyLocation) {
+
   Client.socket.emit('moveStream', {
     x: tank.x,
     y: tank.y,
     id: tank.id,
     tankAngle: tank.angle,
     turretAngle: turret.angle
-  });
+  }
+);
+
+// if (enemyLocation !== undefined) {
+//   enemyLocation.forEach(function (location) {
+//     if ( location.x === tank.x) {
+//       return true
+//     }
+//   })
+
+}
+  // console.log(location);
+
   turret.x = tank.x;
   turret.y = tank.y;
   turret.rotation = game.physics.arcade.angleToPointer(turret)+ 1.57079633;
@@ -56,10 +69,8 @@ TanksGame.Tank.prototype.update =  function() {
         bulletX: bullet.x,
         bulletY: turret.y
       });
-
-    }
   }
-
+}
 
   if (game.input.keyboard.isDown(Phaser.Keyboard.A)){
     tank.body.angularVelocity = -200;
@@ -88,4 +99,5 @@ TanksGame.Tank.prototype.update =  function() {
     if (tank.y >=673){
      tank.y = 672;
     }
+
 }

@@ -10,7 +10,6 @@ if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
 }
 
-
 // app.use(morgan());
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -58,7 +57,7 @@ io.on('connection', function(socket){
     }
     socket.emit('allPrev', tanks)
     tanks.push(newPlayer);
-    console.log(tanks);
+    // console.log(tanks);
     socket.emit('addTank', newPlayer);
     socket.broadcast.emit('newBaddy', newPlayer);
   });
@@ -67,7 +66,7 @@ io.on('connection', function(socket){
     let coward = tanks.find(tank=>tank.id=socket.id)
     let cowardIndex = tanks.indexOf(coward);
     tanks.splice(cowardIndex, 1);
-    console.log(tanks);
+    // console.log(tanks);
   })
   socket.on('allPlayers', function(){
     tanks.filter
@@ -85,6 +84,14 @@ io.on('connection', function(socket){
   socket.on('shootStream', function(info){
     socket.broadcast.emit('shootStream', info);
   });
+
+  socket.on('collision', function (info) {
+    socket.broadcast.emit('collision', info);
+    // console.log(info);
+    // console.log(info, 'server.js info');
+    // console.log(info.tankX);
+    // tankXX = info.tankX;
+  })
 });
 
 server.listen(port, ()=>{

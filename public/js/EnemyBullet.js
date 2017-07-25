@@ -1,4 +1,4 @@
-TanksGame.EnemyBullet = function (x,y,id) {
+TanksGame.EnemyBullet = function () {
   bullets = game.add.group();
   bullets.enableBody = true;
   bullets.createMultiple(50, 'bullet');

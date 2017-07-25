@@ -29,8 +29,8 @@ TanksGame.Play.prototype = {
     enemy = new TanksGame.EnemyTank(x,y,id);
     TanksGame.Play.prototype.allTanks[id] = enemy;
   },
-  addMe: (x,y,id)=>{
-    let me = new TanksGame.Tank(x,y,id);
+  addMe: function(x,y,id) {
+    me = new TanksGame.Tank(x,y,id);
     TanksGame.Play.prototype.allTanks[id]= me;
     TanksGame.Play.prototype.ready = true;
   },
@@ -40,5 +40,4 @@ TanksGame.Play.prototype = {
       TanksGame.Play.prototype.allTanks[tank].update();
     }
   }
-  
 }

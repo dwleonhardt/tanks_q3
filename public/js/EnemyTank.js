@@ -10,7 +10,10 @@ TanksGame.EnemyTank = function (x,y,id) {
 
 
   game.physics.enable(enemyTank, Phaser.Physics.ARCADE);
-
+  var enemyX = enemyTank.x;
+  // console.log(enemyX);
+  // console.log(tankX);
+  var enemyY = enemyTank.y;
 
 }
 
