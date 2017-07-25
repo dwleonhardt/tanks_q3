@@ -4,6 +4,10 @@ Client.socket = io.connect();
 Client.socket.on('addTank', function({x,y,id}){
   TanksGame.Play.prototype.addMe(x,y,id);
 })
+Client.socket.on('newBaddy', function(data){
+  console.log(data);
+  console.log('a new baddy has come; handle it');
+})
 Client.addPlayer = function(){
   Client.socket.emit('addPlayer');
 }
