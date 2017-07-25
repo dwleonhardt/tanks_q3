@@ -84,6 +84,6 @@ io.on('connection', function(socket){
   });
 });
 
-server.listen(port, ()=>{
+server.listen(port,'10.9.22.254', ()=>{
   console.log('listening on ', port);
 });
