@@ -83,7 +83,4 @@ TanksGame.Tank.prototype.update =  function() {
      tank.y = 672;
     }
 
-    // tank.body.checkCollision.up = true;
-  	// tank.body.checkCollision.down = true;
-    // game.physics.arcade.collide(enemyTank, tank);
-}
+};
