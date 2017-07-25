@@ -4,6 +4,7 @@ TanksGame.Tank = function (x,y,id) {
   tank.id = id;
   tank.anchor.setTo(0.5, 0.5);
 
+
   turret = game.add.sprite(x, y, 'blueTurret', 'blueTank');
   turret.anchor.setTo(0.5, 0.6);
   turret.id = id;
@@ -81,4 +82,8 @@ TanksGame.Tank.prototype.update =  function() {
     if (tank.y >=673){
      tank.y = 672;
     }
+
+    // tank.body.checkCollision.up = true;
+  	// tank.body.checkCollision.down = true;
+    // game.physics.arcade.collide(enemyTank, tank);
 }

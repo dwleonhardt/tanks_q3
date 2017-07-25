@@ -15,5 +15,11 @@ TanksGame.EnemyTank = function (x,y,id) {
 }
 
 TanksGame.EnemyTank.prototype.update =  ()=> {
+  enemyTank.body.collideWorldBounds = true;
+  enemyTank.body.bounce.setTo(0,0);
+  tank.body.bounce.setTo(.4,.4)
+  enemyTank.body.checkCollision.up = true;
+	enemyTank.body.checkCollision.down = true;
+  game.physics.arcade.collide(tank, enemyTank);
 
 }
