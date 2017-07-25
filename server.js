@@ -72,6 +72,16 @@ io.on('connection', function(socket){
   socket.on('allPlayers', function(){
     tanks.filter
   });
+  socket.on('moveStream', function(info){
+    if(tanks.length > 0){
+      // let moving = tanks.find((tank)=>{ return tank.id===info.id;});
+      // console.log(moving);
+      // moving.x = info.x;
+      // moving.y = info.y;
+      // let movingIndex = tanks.indexOf(moving);
+      socket.broadcast.emit('moveStream', info);
+    }
+  });
 });
 
 server.listen(port, ()=>{
