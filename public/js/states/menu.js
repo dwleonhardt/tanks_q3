@@ -23,7 +23,6 @@ TanksGame.Menu.prototype = {
   create: function(){
     let bg = this.add.image(0,0, 'bg')
     let anchor = {x:0.5,y:0.5};
-    console.log('menu opened');
     const redTank = this.add.sprite(650,300,'redTank');
     const redTurret = this.add.sprite(650,300,'redTurret');
     redTank.animations.add('run',[0,1,2], 3);
@@ -80,9 +79,9 @@ TanksGame.Menu.prototype = {
     nameForm.type ="text";
     nameForm.id = "nameForm";
     nameForm.placeholder = 'Name';
-    gameDiv.append(nameForm)
-    console.log(nameForm);
-
+    gameDiv.append(nameForm);
+    theNamer = document.getElementById('nameForm');
+    theNamer.addEventListener('change', ()=>{console.log('click');})
 
   },
   update: function(){
