@@ -1,5 +1,7 @@
 var Client = {};
-Client.socket = io.connect('https://battletanks4000.herokuapp.com');
+
+Client.socket = io.connect();
+
 
 Client.socket.on('addTank', function({x,y,id,color}){
   TanksGame.Play.prototype.addMe(x,y,id,color);

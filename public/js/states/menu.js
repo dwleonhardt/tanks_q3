@@ -6,6 +6,7 @@ TanksGame.Menu = function(game){
 
 }
 TanksGame.Menu.prototype = {
+
   preload: function(){
     this.load.image('bg', '/assets/menu.png', 1300, 700);
     this.load.spritesheet('blueTank', '/assets/blue_tank.png', 50,50,3);
@@ -23,6 +24,7 @@ TanksGame.Menu.prototype = {
   create: function(){
     let bg = this.add.image(0,0, 'bg')
     let anchor = {x:0.5,y:0.5};
+
     const redTank = this.add.sprite(650,300,'redTank');
     const redTurret = this.add.sprite(650,300,'redTurret');
     redTank.animations.add('run',[0,1,2], 3);
@@ -92,4 +94,5 @@ TanksGame.Menu.prototype = {
   useBella: function(){
     selections.color = 'bella';
   }
+
 }
