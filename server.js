@@ -99,19 +99,13 @@ io.on('connection', function(socket){
     socket.broadcast.emit('shootStream', info);
   });
 });
-<<<<<<< HEAD
+
 if (process.env.NODE_ENV !== 'production') {
   server.listen(port,'10.9.22.254', ()=>{
     console.log('listening on ', port);
   });
-}else{
-=======
-// if (process.env.NODE_ENV !== 'production') {
-//   server.listen(port,'10.9.22.254', ()=>{
-//     console.log('listening on ', port);
-//   });
-// }else{
->>>>>>> parent of c31e0b5... Merge pull request #25 from dwleonhardt/attempt_at_hit_detection
+}
+else{
   server.listen(port,()=>{
     console.log('listening on ', port);
   });
