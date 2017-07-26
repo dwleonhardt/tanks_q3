@@ -19,3 +19,7 @@ canvas{
   text-align: center;
 
 }
+
+canvas {
+  margin: auto;
+}

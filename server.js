@@ -98,6 +98,9 @@ io.on('connection', function(socket){
   socket.on('shootStream', function(info){
     socket.broadcast.emit('shootStream', info);
   });
+  socket.on('deathStream', function(info){
+    socket.broadcast.emit('deathStream', info);
+  });
 });
 
 
