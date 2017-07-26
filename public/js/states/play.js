@@ -9,6 +9,7 @@ TanksGame.Play = function(game){
 TanksGame.Play.prototype = {
   allTanks: {},
   ready: false,
+  alive: true,
   preload: function(){
     this.load.spritesheet('blueTank', '/assets/blue_tank.png', 50,50,12);
     this.load.spritesheet('bellaTank', '/assets/bella_tank.png', 50,50,1);
@@ -44,7 +45,8 @@ TanksGame.Play.prototype = {
     TanksGame.Play.prototype.ready = true;
   },
   update: function(){
-    if(!TanksGame.Play.prototype.ready){return;}
+
+    if(!TanksGame.Play.prototype.ready || !TanksGame.Play.prototype.alive){return;}
     for (let tank in TanksGame.Play.prototype.allTanks){
       TanksGame.Play.prototype.allTanks[tank].update();
     }
