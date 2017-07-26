@@ -54,7 +54,8 @@ TanksGame.Tank.prototype.update =  function() {
         mouseX: game.input.mousePointer.x,
         mouseY: game.input.mousePointer.y,
         bulletX: bullet.x,
-        bulletY: turret.y
+        bulletY: turret.y,
+        bullet: bullet
       });
 
     }

@@ -8,7 +8,7 @@ TanksGame.EnemyBullet = function (x,y,id) {
 
 }
 
-TanksGame.EnemyBullet.prototype.update =  (mouseX, mouseY, bulletX, bulletY)=> {
+TanksGame.EnemyBullet.prototype.update =  ({mouseX, mouseY, bulletX, bulletY, bullet})=> {
 
 
   var bullet = bullets.getFirstDead();
