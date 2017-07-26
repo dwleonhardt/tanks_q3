@@ -20,6 +20,7 @@ TanksGame.Menu.prototype = {
     this.load.spritesheet('silverTurret', '/assets/silver_tank_top.png', 50, 50, 1);
     this.load.spritesheet('greenTurret', '/assets/green_tank_top.png', 50, 50, 1);
     this.load.spritesheet('purpleTurret', '/assets/purple_tank_top.png', 50, 50, 1);
+    this.load.spritesheet('startButton', '/assets/play_button_2.png', 325, 97);
   },
   create: function(){
     let bg = this.add.image(0,0, 'bg')
@@ -75,19 +76,20 @@ TanksGame.Menu.prototype = {
     greenTank.inputEnabled = true;
     greenTank.events.onInputDown.add(()=>{selections.color = 'green';TanksGame.Menu.prototype.moveOn = true;});
     greenTurret.events.onInputDown.add(()=>{selections.color = 'green';TanksGame.Menu.prototype.moveOn = true;});
+    const startButton = game.add.button(504,560,'startButton',function(){},this, 1,3,2)
 
-    // let gameDiv = document.getElementById('gameContainer');
-    // let nameForm = document.createElement('input');
-    // nameForm.type ="text";
-    // nameForm.id = "nameForm";
-    // nameForm.placeholder = 'Name';
-    // gameDiv.append(nameForm);
-    // theNamer = document.getElementById('nameForm');
-    // theNamer.addEventListener('change', ()=>{console.log('click');})
+    let gameDiv = document.getElementById('gameContainer');
+    let nameForm = document.createElement('input');
+    nameForm.type ="text";
+    nameForm.id = "nameForm";
+    nameForm.placeholder = 'Name';
+    gameDiv.append(nameForm);
+    theNamer = document.getElementById('nameForm');
+    theNamer.addEventListener('change', ()=>{console.log('click');})
 
   },
   update: function(){
-    if(selections.color){
+    if(selections.color&&selections.name){
       this.state.start('Play');
     }
 },
