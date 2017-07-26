@@ -2,6 +2,7 @@ TanksGame.Tank = function (x,y,id,color) {
   this.id = id;
   tank = game.add.sprite(x, y, color+'Tank');
   tank.id = id;
+  tank.health = 1000;
   tank.anchor.setTo(0.5, 0.5);
 
   turret = game.add.sprite(x, y, color+'Turret', color+'Tank');
@@ -22,6 +23,18 @@ TanksGame.Tank = function (x,y,id,color) {
 }
 
 TanksGame.Tank.prototype.update =  function() {
+  let fired = bullets.hash.filter((bullet)=>{return bullet.alive});
+  fired.forEach((bullet)=>{
+    game.world.hash.forEach((otherTank)=>{
+      let left = otherTank.position.x - 25;
+      let right = otherTank.position.x + 25;
+      let up = otherTank.position.y - 25;
+      let down = otherTank.position.y + 25;
+      if((bullet.x>left&&bullet.x<right)&&(bullet.y>up&&bullet.y<down)&&otherTank.id!=tank.id){
+        console.log(`${otherTank.id} was hit`);
+      }
+    })
+  });
   Client.socket.emit('moveStream', {
     x: tank.x,
     y: tank.y,
@@ -87,5 +100,8 @@ TanksGame.Tank.prototype.update =  function() {
 
     if (tank.y >=673){
      tank.y = 672;
+    }
+    if(tank.health <= 0){
+      console.log('game over');
     }
 }

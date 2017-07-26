@@ -83,5 +83,9 @@ TanksGame.Menu.prototype = {
     if(TanksGame.Menu.prototype.moveOn){
       this.state.start('Play');
     }
-}
+},
+  useBella: function(){
+    selections.color = 'bella';
+    TanksGame.Menu.prototype.moveOn = true;
+  }
 }
