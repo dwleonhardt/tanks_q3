@@ -26,6 +26,7 @@ TanksGame.Play.prototype = {
     this.load.spritesheet('purpleTurret', '/assets/purple_tank_top.png', 50, 50, 1);
   },
   create: function(){
+    this.stage.backgroundColor = '#7BAFAF';
     allTanks = {};
     game.physics.startSystem(Phaser.Physics.ARCADE);
     Client.addPlayer(selections.color);
