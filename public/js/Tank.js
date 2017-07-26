@@ -22,6 +22,12 @@ TanksGame.Tank = function (x,y,id,color) {
 }
 
 TanksGame.Tank.prototype.update =  function() {
+  for(let i = 0;i<bullets.hash.length;i++){
+    let sprite = bullets.hash[i];
+    if(sprite.alive){
+      console.log(sprite);
+    }
+  }
   Client.socket.emit('moveStream', {
     x: tank.x,
     y: tank.y,
