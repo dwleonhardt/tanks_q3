@@ -35,6 +35,7 @@ TanksGame.Tank.prototype.update =  function() {
       }
     })
   });
+
   Client.socket.emit('moveStream', {
     x: tank.x,
     y: tank.y,

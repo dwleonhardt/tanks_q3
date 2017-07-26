@@ -1,12 +1,11 @@
 const selections ={
-  name: 'Matt',
+  name: '',
   color: ''
 }
 TanksGame.Menu = function(game){
 
 }
 TanksGame.Menu.prototype = {
-  moveOn : false,
   preload: function(){
     this.load.image('bg', '/assets/menu.png', 1300, 700);
     this.load.spritesheet('blueTank', '/assets/blue_tank.png', 50,50,3);
@@ -76,16 +75,22 @@ TanksGame.Menu.prototype = {
     greenTank.events.onInputDown.add(()=>{selections.color = 'green';TanksGame.Menu.prototype.moveOn = true;});
     greenTurret.events.onInputDown.add(()=>{selections.color = 'green';TanksGame.Menu.prototype.moveOn = true;})
 
+    let gameDiv = document.getElementById('gameContainer');
+    let nameForm = document.createElement('input');
+    nameForm.type ="text";
+    nameForm.id = "nameForm";
+    nameForm.placeholder = 'Name';
+    gameDiv.append(nameForm)
+    console.log(nameForm);
+
 
   },
   update: function(){
-    // console.log(selections.color);
-    if(TanksGame.Menu.prototype.moveOn){
+    if(selections.name && selections.color){
       this.state.start('Play');
     }
 },
   useBella: function(){
     selections.color = 'bella';
-    TanksGame.Menu.prototype.moveOn = true;
   }
 }

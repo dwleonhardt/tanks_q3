@@ -1,4 +1,17 @@
+@import url('https://fonts.googleapis.com/css?family=VT323');
 
 body{
   background-color: cornsilk;
+}
+#nameForm{
+  position: absolute;
+  height: 10%;
+  left: 319px;
+  top: 450px;
+  width: 50%;
+  font-family: 'VT323', monospace;
+  font-size: 5em;
+  background-color: black;
+  color: white;
+  text-align: center;
 }
