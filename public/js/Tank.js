@@ -45,7 +45,6 @@ TanksGame.Tank.prototype.update =  function() {
       let up = otherTank.position.y - 25;
       let down = otherTank.position.y + 25;
       if((bullet.x>left&&bullet.x<right)&&(bullet.y>up&&bullet.y<down)&&(otherTank.id === tank.id)){
-        // console.log('i was hit: ' + tank.id + 'by: ' + bullet.id);
         TanksGame.Tank.prototype.hitCounter(bullet.id, bullet);
       }
     });
