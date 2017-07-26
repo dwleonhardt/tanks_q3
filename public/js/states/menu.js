@@ -1,12 +1,12 @@
 const selections ={
-  name: 'Matt',
+  name: '',
   color: ''
 }
 TanksGame.Menu = function(game){
 
 }
 TanksGame.Menu.prototype = {
-  moveOn : false,
+
   preload: function(){
     this.load.image('bg', '/assets/menu.png', 1300, 700);
     this.load.spritesheet('blueTank', '/assets/blue_tank.png', 50,50,3);
@@ -24,7 +24,7 @@ TanksGame.Menu.prototype = {
   create: function(){
     let bg = this.add.image(0,0, 'bg')
     let anchor = {x:0.5,y:0.5};
-    console.log('menu opened');
+
     const redTank = this.add.sprite(650,300,'redTank');
     const redTurret = this.add.sprite(650,300,'redTurret');
     redTank.animations.add('run',[0,1,2], 3);
@@ -74,14 +74,25 @@ TanksGame.Menu.prototype = {
     greenTurret.inputEnabled = true;
     greenTank.inputEnabled = true;
     greenTank.events.onInputDown.add(()=>{selections.color = 'green';TanksGame.Menu.prototype.moveOn = true;});
-    greenTurret.events.onInputDown.add(()=>{selections.color = 'green';TanksGame.Menu.prototype.moveOn = true;})
+    greenTurret.events.onInputDown.add(()=>{selections.color = 'green';TanksGame.Menu.prototype.moveOn = true;});
 
+    // let gameDiv = document.getElementById('gameContainer');
+    // let nameForm = document.createElement('input');
+    // nameForm.type ="text";
+    // nameForm.id = "nameForm";
+    // nameForm.placeholder = 'Name';
+    // gameDiv.append(nameForm);
+    // theNamer = document.getElementById('nameForm');
+    // theNamer.addEventListener('change', ()=>{console.log('click');})
 
   },
   update: function(){
-    // console.log(selections.color);
-    if(TanksGame.Menu.prototype.moveOn){
+    if(selections.color){
       this.state.start('Play');
     }
-}
+},
+  useBella: function(){
+    selections.color = 'bella';
+  }
+
 }
