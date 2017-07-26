@@ -28,10 +28,10 @@ Client.socket.on('moveStream', function({x,y,id,tankAngle,turretAngle}){
     }
   })
 });
-Client.socket.on('shootStream', function({mouseX, mouseY, bulletX, bulletY}){
+Client.socket.on('shootStream', function({mouseX, mouseY, bulletX, bulletY, bulletId}){
 
   if(game.state.current==='Play'&&Object.keys(TanksGame.Play.prototype.allTanks).length >1){
-    TanksGame.EnemyBullet.prototype.update(mouseX, mouseY, bulletX, bulletY);
+    TanksGame.EnemyBullet.prototype.update(mouseX, mouseY, bulletX, bulletY, bulletId);
   }
 });
 Client.socket.on('quitter', function(info){
