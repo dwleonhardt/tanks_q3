@@ -18,7 +18,7 @@ TanksGame.Tank = function (x,y,id,color) {
 
   enemyBullets = game.add.group();
   enemyBullets.enableBody = true;
-  enemyBullets.createMultiple(500, 'bullet');
+  enemyBullets.createMultiple(500, 'evilBullet');
   enemyBullets.setAll('checkWorldBounds', true);
   enemyBullets.setAll('outOfBoundsKill', true);
 

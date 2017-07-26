@@ -18,6 +18,7 @@ TanksGame.Play.prototype = {
     this.load.spritesheet('silverTank', '/assets/silver_tank.png', 50,50,12);
     this.load.spritesheet('greenTank', '/assets/green_tank.png', 50,50,12);
     this.load.spritesheet('bullet', '/assets/bullet.png', 50, 50, 1);
+    this.load.spritesheet('evilBullet', '/assets/red_bullet.png', 50, 50, 1);
     this.load.spritesheet('blueTurret', '/assets/blue_tank_top.png', 50, 50, 1);
     this.load.spritesheet('redTurret', '/assets/red_tank_top.png', 50, 50, 1);
     this.load.spritesheet('bellaTurret', '/assets/bella_tank_top.png', 50, 50, 1);
