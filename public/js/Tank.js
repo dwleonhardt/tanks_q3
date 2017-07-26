@@ -120,7 +120,9 @@ TanksGame.Tank.prototype.update =  function() {
      tank.y = 672;
     }
     if(tank.health <= 0){
-      console.log(tank.id);
+      Client.socket.emit('deathStream', {
+        death: tank.id
+      })
       tank.destroy();
       turret.destroy();
       TanksGame.Play.prototype.alive = false;

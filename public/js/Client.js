@@ -37,6 +37,9 @@ Client.socket.on('shootStream', function({mouseX, mouseY, bulletX, bulletY, bull
 Client.socket.on('quitter', function(info){
   TanksGame.Play.prototype.destroyTheWeak(info);
 });
+Client.socket.on('deathStream', function({death}){
+  TanksGame.Play.prototype.destroyTheWeak(death);
+});
 Client.addPlayer = function(color){
   Client.socket.emit('addPlayer', color);
 }

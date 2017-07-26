@@ -98,12 +98,15 @@ io.on('connection', function(socket){
   socket.on('shootStream', function(info){
     socket.broadcast.emit('shootStream', info);
   });
+  socket.on('deathStream', function(info){
+    socket.broadcast.emit('deathStream', info);
+  });
 });
 
 
 if (process.env.NODE_ENV !== 'production') {
-  server.listen(port,'10.9.23.162', ()=>{
-    console.log('listening on ', '10.9.23.162:'+port);
+  server.listen(port,'10.9.21.13', ()=>{
+    console.log('listening on ', '10.9.21.13:'+port);
   });
 }
 else{
