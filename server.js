@@ -98,13 +98,17 @@ io.on('connection', function(socket){
   socket.on('shootStream', function(info){
     socket.broadcast.emit('shootStream', info);
   });
+  socket.on('damageStream', function(info){
+    socket.broadcast.emit('damageStream', info);
+  });
 });
-// if (process.env.NODE_ENV !== 'production') {
-//   server.listen(port,'192.168.1.5', ()=>{
-//     console.log('listening on ', port);
-//   });
-// }else{
+
+if (process.env.NODE_ENV !== 'production') {
+  server.listen(port,'10.9.23.162', ()=>{
+    console.log('listening on ', port);
+  });
+}else{
   server.listen(port,()=>{
     console.log('listening on ', port);
   });
-// }
+}

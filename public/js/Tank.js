@@ -16,13 +16,45 @@ TanksGame.Tank = function (x,y,id,color) {
   bullets.setAll('checkWorldBounds', true);
   bullets.setAll('outOfBoundsKill', true);
 
+
   game.physics.enable(tank, Phaser.Physics.ARCADE);
 
   fireRate = 100;
   nextFire = 0;
 }
+TanksGame.Tank.prototype.hitCounter = function(hitId, bulletId) {
+  if (hitId === tank.id && bulletId !== tank.id) {
+    console.log('hit');
+  }
+}
 
 TanksGame.Tank.prototype.update =  function() {
+
+  if (game.input.activePointer.isDown) {
+    if (game.time.now > nextFire && bullets.countDead() > 20){
+      game.world.bringToTop(turret);
+
+      nextFire = game.time.now + fireRate;
+
+      var bullet = bullets.getFirstDead();
+
+      bullet.tankId = tank.id;
+
+      bullet.reset(turret.x, turret.y);
+
+      game.physics.arcade.moveToPointer(bullet, 300);
+
+      Client.socket.emit('shootStream', {
+        mouseX: game.input.mousePointer.x,
+        mouseY: game.input.mousePointer.y,
+        bulletX: bullet.x,
+        bulletY: turret.y
+      });
+
+    }
+  }
+
+
   let fired = bullets.hash.filter((bullet)=>{return bullet.alive});
   fired.forEach((bullet)=>{
     game.world.hash.forEach((otherTank)=>{
@@ -30,8 +62,13 @@ TanksGame.Tank.prototype.update =  function() {
       let right = otherTank.position.x + 25;
       let up = otherTank.position.y - 25;
       let down = otherTank.position.y + 25;
-      if((bullet.x>left&&bullet.x<right)&&(bullet.y>up&&bullet.y<down)&&otherTank.id!=tank.id){
-        console.log(`${otherTank.id} was hit`);
+      if((bullet.x>left&&bullet.x<right)&&(bullet.y>up&&bullet.y<down)){
+        if (otherTank.id!=tank.id) {
+          Client.socket.emit('damageStream', {
+            hitId: otherTank.id,
+            bulletId: bullet.tankId
+          });
+        }
       }
     })
   });
@@ -50,28 +87,6 @@ TanksGame.Tank.prototype.update =  function() {
   tank.body.velocity.y = 0;
   tank.body.angularVelocity = 0;
   tank.angle;
-
-  if (game.input.activePointer.isDown) {
-    if (game.time.now > nextFire && bullets.countDead() > 20){
-      game.world.bringToTop(turret);
-
-      nextFire = game.time.now + fireRate;
-
-      var bullet = bullets.getFirstDead();
-
-      bullet.reset(turret.x, turret.y);
-
-      game.physics.arcade.moveToPointer(bullet, 300);
-
-      Client.socket.emit('shootStream', {
-        mouseX: game.input.mousePointer.x,
-        mouseY: game.input.mousePointer.y,
-        bulletX: bullet.x,
-        bulletY: turret.y
-      });
-
-    }
-  }
 
 
   if (game.input.keyboard.isDown(Phaser.Keyboard.A)){
