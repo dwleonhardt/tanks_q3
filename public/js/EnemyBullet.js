@@ -8,8 +8,11 @@ TanksGame.EnemyBullet = function (x,y,id) {
 
 }
 
-TanksGame.EnemyBullet.prototype.update =  (mouseX, mouseY, bulletX, bulletY)=> {
-  var bullet = bullets.getFirstDead();
-  bullet.reset(bulletX, bulletY);
-  game.physics.arcade.moveToXY(bullet, mouseX, mouseY, 300);
+TanksGame.EnemyBullet.prototype.update =  (mouseX, mouseY, bulletX, bulletY, bulletId)=> {
+  var enemyBullet = enemyBullets.getFirstDead();
+
+  enemyBullet.id = bulletId;
+
+  enemyBullet.reset(bulletX, bulletY);
+  game.physics.arcade.moveToXY(enemyBullet, mouseX, mouseY, 300);
 }

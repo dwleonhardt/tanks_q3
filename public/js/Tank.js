@@ -2,7 +2,7 @@ TanksGame.Tank = function (x,y,id,color) {
   this.id = id;
   tank = game.add.sprite(x, y, color+'Tank');
   tank.id = id;
-  tank.health = 1000;
+  tank.health = 10;
   tank.anchor.setTo(0.5, 0.5);
 
   turret = game.add.sprite(x, y, color+'Turret', color+'Tank');
@@ -16,25 +16,42 @@ TanksGame.Tank = function (x,y,id,color) {
   bullets.setAll('checkWorldBounds', true);
   bullets.setAll('outOfBoundsKill', true);
 
+  enemyBullets = game.add.group();
+  enemyBullets.enableBody = true;
+  enemyBullets.createMultiple(500, 'bullet');
+  enemyBullets.setAll('checkWorldBounds', true);
+  enemyBullets.setAll('outOfBoundsKill', true);
+
   game.physics.enable(tank, Phaser.Physics.ARCADE);
 
   fireRate = 100;
   nextFire = 0;
 }
+TanksGame.Tank.prototype.hitCounter = function (shooterId, bullet) {
 
+  tank.health --;
+  console.log(tank.health);
+  bullet.kill();
+
+}
 TanksGame.Tank.prototype.update =  function() {
-  let fired = bullets.hash.filter((bullet)=>{return bullet.alive});
-  fired.forEach((bullet)=>{
+
+  var liveEnemyBullets = enemyBullets.filter((bullet)=>bullet.alive).list;
+
+  liveEnemyBullets.forEach((bullet)=>{
     game.world.hash.forEach((otherTank)=>{
       let left = otherTank.position.x - 25;
       let right = otherTank.position.x + 25;
       let up = otherTank.position.y - 25;
       let down = otherTank.position.y + 25;
-      if((bullet.x>left&&bullet.x<right)&&(bullet.y>up&&bullet.y<down)&&otherTank.id!=tank.id){
-        console.log(`${otherTank.id} was hit`);
+      if((bullet.x>left&&bullet.x<right)&&(bullet.y>up&&bullet.y<down)&&(otherTank.id === tank.id)){
+        // console.log('i was hit: ' + tank.id + 'by: ' + bullet.id);
+        TanksGame.Tank.prototype.hitCounter(bullet.id, bullet);
       }
-    })
+    });
   });
+
+
   Client.socket.emit('moveStream', {
     x: tank.x,
     y: tank.y,
@@ -67,7 +84,8 @@ TanksGame.Tank.prototype.update =  function() {
         mouseX: game.input.mousePointer.x,
         mouseY: game.input.mousePointer.y,
         bulletX: bullet.x,
-        bulletY: turret.y
+        bulletY: turret.y,
+        bulletId: tank.id
       });
 
     }
@@ -102,6 +120,11 @@ TanksGame.Tank.prototype.update =  function() {
      tank.y = 672;
     }
     if(tank.health <= 0){
-      console.log('game over');
+      console.log(tank.id);
+      tank.destroy();
+      turret.destroy();
+      TanksGame.Play.prototype.alive = false;
+      selections.color = '';
+      game.state.start('Menu');
     }
 }
