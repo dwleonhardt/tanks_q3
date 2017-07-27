@@ -57,7 +57,7 @@ TanksGame.Play.prototype = {
 
 }
 
-module.exports = {
-  destroyTheWeak,
-  TanksGame
-};
+// module.exports = {
+//   // destroyTheWeak,
+//   TanksGame
+// };
