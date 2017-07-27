@@ -24,7 +24,11 @@ TanksGame.Menu.prototype = {
     this.load.spritesheet('helpButton', '/assets/help_button.png', 325, 97);
   },
   create: function(){
-    splode.play();
+    if(!splashed){
+      splode.play();
+      splashed = true;
+    }
+
     let bg = this.add.image(0,0, 'bg')
     let anchor = {x:0.5,y:0.5};
 

@@ -1,4 +1,5 @@
   const splode = new Audio('/assets/splosion.wav');
+  var splashed = false;
   game.state.add('Boot', TanksGame.Boot);
   game.state.add('Splash', TanksGame.Splash)
   game.state.add('Menu', TanksGame.Menu);

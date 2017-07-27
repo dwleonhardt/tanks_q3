@@ -12,6 +12,7 @@ TanksGame.Controls.prototype = {
     this.load.spritesheet('redTank', '/assets/red_tank.png', 50,50,13);
     this.load.spritesheet('redTurret', '/assets/red_tank_top.png', 50, 50, 1);
     this.load.spritesheet('bullet', '/assets/bullet.png', 50, 50, 1);
+    this.load.spritesheet('menuButton', '/assets/menu_button.png', 325, 97);
   },
   create: function(){
     this.add.image(0,0,'bg');
@@ -52,6 +53,11 @@ TanksGame.Controls.prototype = {
 
     mouse = game.add.image(900, 300, 'mouse');
     mouse.move = 'right';
+
+
+
+
+        const menuButton = game.add.button(50,560,'menuButton',()=>{game.state.start('Menu');},this, 1,3,2)
   },
   update: function(){
     leftRight.body.angularVelocity = 0;
@@ -109,5 +115,11 @@ TanksGame.Controls.prototype = {
         mouse.move = 'right';
       }
     }
+
+
+
+
+
+
   }
 };

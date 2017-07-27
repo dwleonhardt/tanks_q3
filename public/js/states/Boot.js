@@ -16,6 +16,6 @@ TanksGame.Boot.prototype = {
     this.pageAlignVertically = true;
     this.stage.forcePortrait = true;
     this.stage.backgroundColor = '#553EB4';
-    this.state.start('Controls');
+    this.state.start('Splash');
   }
 };
