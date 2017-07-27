@@ -45,7 +45,3 @@ Client.socket.on('deathStream', function({death}){
 Client.addPlayer = function(selections){
   Client.socket.emit('addPlayer', selections);
 };
-
-module.exports = {
-  TanksGame
-};

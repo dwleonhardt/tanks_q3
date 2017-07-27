@@ -20,7 +20,3 @@ TanksGame.Boot.prototype = {
     this.state.start('Menu');
   }
 };
-
-module.exports = {
-  TanksGame
-};
