@@ -52,11 +52,7 @@ TanksGame.Tank.prototype.hitCounter = function (shooterId, bullet) {
   bullet.kill();
 
 }
-TanksGame.Tank.prototype.update =  function() {
-  label.x = tank.x-12;
-  label.y = tank.y-45;
-
-
+TanksGame.Tank.prototype.checkHit = function(enemyBullets){
   var liveEnemyBullets = enemyBullets.filter((bullet)=>bullet.alive).list;
 
   liveEnemyBullets.forEach((bullet)=>{
@@ -70,6 +66,11 @@ TanksGame.Tank.prototype.update =  function() {
       }
     });
   });
+}
+TanksGame.Tank.prototype.update =  function() {
+  label.x = tank.x-12;
+  label.y = tank.y-45;
+  TanksGame.Tank.prototype.checkHit(enemyBullets);
 
 
   Client.socket.emit('moveStream', {
@@ -79,6 +80,8 @@ TanksGame.Tank.prototype.update =  function() {
     tankAngle: tank.angle,
     turretAngle: turret.angle
   });
+
+
   turret.x = tank.x;
   turret.y = tank.y;
   turret.rotation = game.physics.arcade.angleToPointer(turret)+ 1.57079633;
@@ -112,15 +115,15 @@ TanksGame.Tank.prototype.update =  function() {
   }
 
 
-  if (game.input.keyboard.isDown(Phaser.Keyboard.A)){
+  if (game.input.keyboard.isDown(Phaser.Keyboard.A)||game.input.keyboard.isDown(Phaser.Keyboard.LEFT)){
     tank.body.angularVelocity = -200;
     tank.body.label_name = 200;
   }
-  else if (game.input.keyboard.isDown(Phaser.Keyboard.D)){
+  else if (game.input.keyboard.isDown(Phaser.Keyboard.D)||game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)){
     tank.body.angularVelocity = 200;
   }
 
-  if (game.input.keyboard.isDown(Phaser.Keyboard.W)){
+  if (game.input.keyboard.isDown(Phaser.Keyboard.W)||game.input.keyboard.isDown(Phaser.Keyboard.UP)){
     game.physics.arcade.velocityFromAngle(tank.angle-90, 300, tank.body.velocity);
     tank.animations.add('up',[0,1,2], 5);
     tank.animations.play('up', 5, true);
