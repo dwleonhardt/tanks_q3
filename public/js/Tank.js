@@ -1,15 +1,16 @@
+var killedBy = 'The Guardians'
 TanksGame.Tank = function (x,y,id,color,name) {
-  
+
   this.id = id;
   tank = game.add.sprite(x, y, color+'Tank');
   game.physics.enable(tank, Phaser.Physics.ARCADE);
   label = game.add.text(x-12,y-40,name, {font: 'bold 19px VT323', fill: 'black'})
   label.id = id;
   tank.id = id;
+  tank.name = name;
   tank.maxHealth = 10
   tank.health = 10;
   tank.anchor.setTo(0.5, 0.5);
-
 
 
   turret = game.add.sprite(x, y, color+'Turret', color+'Tank');
@@ -62,15 +63,33 @@ TanksGame.Tank.prototype.checkHit = function(enemyBullets){
       let up = otherTank.position.y - 25;
       let down = otherTank.position.y + 25;
       if((bullet.x>left&&bullet.x<right)&&(bullet.y>up&&bullet.y<down)&&(otherTank.id === tank.id)){
+        killedBy = bullet.name;
         TanksGame.Tank.prototype.hitCounter(bullet.id, bullet);
       }
     });
   });
 }
+TanksGame.Tank.prototype.checkYoStream = function(bullets){
+  var liveBullets = bullets.filter((bullet)=>bullet.alive).list;
+
+  liveBullets.forEach(bullet=>{
+    game.world.children.forEach(otherTank=>{
+        let left = otherTank.position.x - 25;
+        let right = otherTank.position.x + 25;
+        let up = otherTank.position.y - 25;
+        let down = otherTank.position.y + 25;
+        if((bullet.x>left&&bullet.x<right)&&(bullet.y>up&&bullet.y<down)&&(otherTank.id != tank.id)){
+          bullet.kill();
+        }
+      // }
+    })
+  })
+}
 TanksGame.Tank.prototype.update =  function() {
   label.x = tank.x-12;
   label.y = tank.y-45;
   TanksGame.Tank.prototype.checkHit(enemyBullets);
+  TanksGame.Tank.prototype.checkYoStream(bullets)
 
 
   Client.socket.emit('moveStream', {
@@ -94,13 +113,9 @@ TanksGame.Tank.prototype.update =  function() {
   if (game.input.activePointer.isDown) {
     if (game.time.now > nextFire && bullets.countDead() > 20){
       game.world.bringToTop(turret);
-
       nextFire = game.time.now + fireRate;
-
       var bullet = bullets.getFirstDead();
-
       bullet.reset(turret.x, turret.y);
-
       game.physics.arcade.moveToPointer(bullet, 300);
 
       Client.socket.emit('shootStream', {
@@ -108,7 +123,8 @@ TanksGame.Tank.prototype.update =  function() {
         mouseY: game.input.mousePointer.y,
         bulletX: bullet.x,
         bulletY: turret.y,
-        bulletId: tank.id
+        bulletId: tank.id,
+        bulletName: tank.name
       });
 
     }
@@ -153,6 +169,10 @@ TanksGame.Tank.prototype.update =  function() {
       selections.color = '';
       selections.name = '';
       game.stage.backgroundColor = '#553EB4';
-      game.state.start('Menu');
+      game.state.start('GameOver');
     }
 }
+
+module.exports = {
+  TanksGame
+};

@@ -24,13 +24,16 @@ Client.socket.on('moveStream', function({x,y,id,tankAngle,turretAngle}){
       sprite.x = x;
       sprite.y = y;
       sprite.angle = turretAngle;
+    }else if(sprite.isLabel && sprite.id == id){
+      sprite.x = x-12;
+      sprite.y = y-12;
     }
   })
 });
-Client.socket.on('shootStream', function({mouseX, mouseY, bulletX, bulletY, bulletId}){
+Client.socket.on('shootStream', function({mouseX, mouseY, bulletX, bulletY, bulletId, bulletName}){
 
   if(game.state.current==='Play'&&Object.keys(TanksGame.Play.prototype.allTanks).length >1){
-    TanksGame.EnemyBullet.prototype.update(mouseX, mouseY, bulletX, bulletY, bulletId);
+    TanksGame.EnemyBullet.prototype.update(mouseX, mouseY, bulletX, bulletY, bulletId, bulletName);
   }
 });
 Client.socket.on('quitter', function(info){
@@ -41,4 +44,8 @@ Client.socket.on('deathStream', function({death}){
 });
 Client.addPlayer = function(selections){
   Client.socket.emit('addPlayer', selections);
-}
+};
+
+module.exports = {
+  TanksGame
+};
