@@ -3,6 +3,7 @@ TanksGame.Tank = function (x,y,id,color,name) {
   tank = game.add.sprite(x, y, color+'Tank');
   game.physics.enable(tank, Phaser.Physics.ARCADE);
   label = game.add.text(x-12,y-40,name, {font: 'bold 19px VT323', fill: 'black'})
+  label.id = id;
   tank.id = id;
   tank.maxHealth = 10
   tank.health = 10;

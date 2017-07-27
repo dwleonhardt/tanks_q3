@@ -16,7 +16,6 @@ Client.socket.on('allPrev', function(data){
 });
 Client.socket.on('moveStream', function({x,y,id,tankAngle,turretAngle}){
   game.world.children.forEach((sprite)=>{
-
     if(sprite.id === id && sprite.key.indexOf('Tank') >-1){
       sprite.x = x;
       sprite.y = y;
