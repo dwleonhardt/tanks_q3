@@ -89,7 +89,7 @@ TanksGame.Menu.prototype = {
 
 
     const startButton = game.add.button(504,560,'startButton',()=>{
-      if(selections.color){
+      if(selections.color&&selections.name){
         document.getElementById('nameForm');
         nameForm.remove();
         this.state.start('Play');
@@ -99,14 +99,18 @@ TanksGame.Menu.prototype = {
     },this, 1,3,2)
 
 
-
     let gameDiv = document.getElementById('gameContainer');
     let nameForm = document.createElement('input');
     nameForm.type ="text";
     nameForm.id = "nameForm";
     nameForm.placeholder = 'Name';
+    nameForm.style.height = '100px';
+    nameForm.style.width = '750px';
+    let margin = (gameDiv.offsetWidth-1300)/2;
+    nameForm.style.left= `${margin+280}px`;
+    gameDiv.append(nameForm)
     theNamer = document.getElementById('nameForm');
-    // theNamer.addEventListener('change', ()=>{console.log('click');})
+    $('#nameForm').change(()=>{selections.name = $('#nameForm').val()});
 
   },
   update: function(){

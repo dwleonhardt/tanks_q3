@@ -9,8 +9,8 @@ canvas{
 }
 #nameForm{
   position: absolute;
-  height: 10%;
-  left: 319px;
+  /*height: 10%;*/
+  /*left: 319px;*/
   top: 450px;
   font-family: 'VT323', monospace;
   font-size: 5em;
