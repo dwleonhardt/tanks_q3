@@ -1,5 +1,6 @@
 var killedBy = 'The Guardians'
 TanksGame.Tank = function (x,y,id,color,name) {
+
   this.id = id;
   tank = game.add.sprite(x, y, color+'Tank');
   game.physics.enable(tank, Phaser.Physics.ARCADE);
