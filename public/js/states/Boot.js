@@ -1,5 +1,5 @@
-
 var TanksGame = {};
+
 TanksGame.Boot = function(game){
 
 };
@@ -19,4 +19,8 @@ TanksGame.Boot.prototype = {
     this.stage.backgroundColor = '#553EB4';
     this.state.start('Menu');
   }
+};
+
+module.exports = {
+  TanksGame
 };

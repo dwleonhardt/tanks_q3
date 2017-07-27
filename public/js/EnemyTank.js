@@ -5,6 +5,7 @@ TanksGame.EnemyTank = function (x,y,id,color,name) {
   enemyLabel = game.add.text(x-12,y-40,name, {font: 'bold 19px VT323', fill: 'black'})
   enemyLabel.id = id;
   enemyLabel.key = name;
+  enemyLabel.isLabel = true;
   enemyTank.anchor.setTo(0.5, 0.5);
   enemyTank.id = id;
 
@@ -22,3 +23,7 @@ TanksGame.EnemyTank.prototype.update =  ()=> {
   enemyLabel.x = enemyTank.x-12;
   enemyLabel.y = enemyTank.y-45;
 }
+
+module.exports = {
+  TanksGame
+};
