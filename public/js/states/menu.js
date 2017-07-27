@@ -6,7 +6,6 @@ TanksGame.Menu = function(game){
 
 }
 TanksGame.Menu.prototype = {
-
   preload: function(){
     this.load.image('bg', '/assets/menu.png', 1300, 700);
     this.load.spritesheet('blueTank', '/assets/blue_tank.png', 50,50,3);
@@ -87,11 +86,7 @@ TanksGame.Menu.prototype = {
     greenTurret.active = false;
     greenTank.events.onInputDown.add(()=>{selections.color = 'green'});
     greenTurret.events.onInputDown.add(()=>{selections.color = 'green'});
-
-
     const startButton = game.add.button(504,560,'startButton',TanksGame.Menu.prototype.validate,this, 1,3,2)
-
-
     let gameDiv = document.getElementById('gameContainer');
     let nameForm = document.createElement('input');
     nameForm.type ="text";
@@ -104,7 +99,6 @@ TanksGame.Menu.prototype = {
     gameDiv.append(nameForm)
     theNamer = document.getElementById('nameForm');
     $('#nameForm').change(()=>{selections.name = $('#nameForm').val()});
-
   },
   validate: ()=>{
     TanksGame.Menu.prototype.clearPrompt();
@@ -148,5 +142,4 @@ TanksGame.Menu.prototype = {
   useBella: function(){
     selections.color = 'bella';
   }
-
 }

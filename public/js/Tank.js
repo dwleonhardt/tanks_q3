@@ -1,4 +1,4 @@
-var killedBy = 'The Guardians'
+let killedBy = 'The Guardians'
 TanksGame.Tank = function (x,y,id,color,name) {
 
   this.id = id;
@@ -71,7 +71,7 @@ TanksGame.Tank.prototype.addHealth = function () {
 };
 
 TanksGame.Tank.prototype.checkHit = function(enemyBullets){
-  var liveEnemyBullets = enemyBullets.filter((bullet)=>bullet.alive).list;
+  let liveEnemyBullets = enemyBullets.filter((bullet)=>bullet.alive).list;
 
   liveEnemyBullets.forEach((bullet)=>{
     game.world.hash.forEach((otherTank)=>{
@@ -87,7 +87,7 @@ TanksGame.Tank.prototype.checkHit = function(enemyBullets){
   });
 }
 TanksGame.Tank.prototype.checkYoStream = function(bullets){
-  var liveBullets = bullets.filter((bullet)=>bullet.alive).list;
+  let liveBullets = bullets.filter((bullet)=>bullet.alive).list;
 
   liveBullets.forEach(bullet=>{
     game.world.children.forEach(otherTank=>{
@@ -107,7 +107,6 @@ TanksGame.Tank.prototype.update =  function() {
   TanksGame.Tank.prototype.checkHit(enemyBullets);
   TanksGame.Tank.prototype.checkYoStream(bullets)
 
-
   Client.socket.emit('moveStream', {
     x: tank.x,
     y: tank.y,
@@ -115,7 +114,6 @@ TanksGame.Tank.prototype.update =  function() {
     tankAngle: tank.angle,
     turretAngle: turret.angle
   });
-
 
   turret.x = tank.x;
   turret.y = tank.y;
@@ -130,7 +128,7 @@ TanksGame.Tank.prototype.update =  function() {
     if (game.time.now > nextFire && bullets.countDead() > 20){
       game.world.bringToTop(turret);
       nextFire = game.time.now + fireRate;
-      var bullet = bullets.getFirstDead();
+      let bullet = bullets.getFirstDead();
       bullet.reset(turret.x, turret.y);
       game.physics.arcade.moveToPointer(bullet, 300);
 

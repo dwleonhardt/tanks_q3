@@ -3,18 +3,9 @@ const app = express();
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
 const port = process.env.PORT || 8000;
-const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser');
-const morgan = require('morgan');
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
 }
-
-
-// app.use(morgan());
-app.use(cookieParser());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -29,33 +20,30 @@ app.use('/', function(req, res){
   res.sendFile(__dirname+'/public/index.html');
 })
 
-
-
-
 let tanks = [];
+let indexToUse = 0;
 let startPos = [{
-      pos:1,
-      x:325,
-      y:175},
+      pos: 1,
+      x: 325,
+      y: 175},
     {
       pos:2,
-      x:975,
-      y:525
+      x: 975,
+      y: 525
     },{
       pos: 3,
-      x:325,
-      y:525
+      x: 325,
+      y: 525
     },{
       pos: 4,
-      x:975,
-      y:175
+      x: 975,
+      y: 175
     },{
-      pos:5,
-      x:650,
-      y:350
-}
-]
-let indexToUse = 0;
+      pos: 5,
+      x: 650,
+      y: 350
+    }]
+
 io.on('connection', function(socket){
   socket.on('addPlayer', function(selections){
     for (let i = 0; i<tanks.length; i++){

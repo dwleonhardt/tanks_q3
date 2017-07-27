@@ -2,8 +2,6 @@ TanksGame.Splash = function(game){
 
 };
 
-this.Turret;
-
 TanksGame.Splash.prototype = {
   preload: function(){
     this.load.image('bg', '/assets/curtain.png', 1300, 700);
@@ -19,7 +17,6 @@ TanksGame.Splash.prototype = {
     this.load.spritesheet('purpleTurret', '/assets/purple_tank_top.png', 50, 50, 1);
   },
   create: function(){
-
     this.stage.backgroundColor = '#000000';
     curtain = this.add.image(0,704, 'bg');
     blueTank = this.add.sprite(0,660,'blueTank');
