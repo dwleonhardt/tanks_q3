@@ -1,13 +1,11 @@
 const chai = require('chai');
 const assert = chai.assert;
 const expect = chai.expect;
-const TanksGame = require('../public/js/states/Boot.js').TanksGame;
-// const TanksGame = require('../public/js/states/play.js').TanksGame;
-// const destroyTheWeak = require('../public/js/states/play.js').TanksGame.destroyTheWeak;
+const Play = require('../public/js/states/play.js');
 
-const destroyTheWeak = require('../public/js/states/play.js').destroyTheWeak;
-//
+var game = new Play();
+
 it ('Should be a function', function() {
-    expect(destroyTheWeak).to.be.a('function','destroyTheWeak is not a function');
-    assert.isFunction(destroyTheWeak, 'destroyTheWeak is not a function');
+    expect(game.destroyTheWeak).to.be.a('function','destroyTheWeak is not a function');
+    assert.isFunction(game.destroyTheWeak, 'destroyTheWeak is not a function');
   });

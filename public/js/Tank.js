@@ -10,8 +10,6 @@ TanksGame.Tank = function (x,y,id,color,name) {
   tank.anchor.setTo(0.5, 0.5);
 
 
-
-
   turret = game.add.sprite(x, y, color+'Turret', color+'Tank');
   turret.anchor.setTo(0.5, 0.6);
   turret.id = id;

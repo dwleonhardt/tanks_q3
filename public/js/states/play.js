@@ -1,3 +1,10 @@
+if(TanksGame){
+  console.log(yay);
+}
+else {
+  var TanksGame = {}
+}
+
 
 TanksGame.Play = function(game){
   this.score = 0;
@@ -57,7 +64,4 @@ TanksGame.Play.prototype = {
 
 }
 
-module.exports = {
-  TanksGame,
-  destroyTheWeak
-};
+module.exports = TanksGame.Play;
