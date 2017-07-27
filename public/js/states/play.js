@@ -1,5 +1,5 @@
 if(TanksGame){
-  console.log('yay');
+  // console.log('yay');
 }
 else {
   var TanksGame = {}

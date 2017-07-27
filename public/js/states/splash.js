@@ -4,7 +4,7 @@ TanksGame.Splash = function(game){
 
 TanksGame.Splash.prototype = {
   preload: function(){
-    this.load.image('bg', '/assets/curtain.png', 1300, 700);
+    this.load.image('curtain', '/assets/curtain.png', 1300, 700);
     this.load.spritesheet('blueTank', '/assets/blue_tank.png', 50,50,3);
     this.load.spritesheet('purpleTank', '/assets/purple_tank.png', 50,50,3);
     this.load.spritesheet('redTank', '/assets/red_tank.png', 50,50,13);
@@ -18,7 +18,7 @@ TanksGame.Splash.prototype = {
   },
   create: function(){
     this.stage.backgroundColor = '#000000';
-    curtain = this.add.image(0,704, 'bg');
+    curtain = this.add.image(0,704, 'curtain');
     blueTank = this.add.sprite(0,660,'blueTank');
     blueTurret = this.add.sprite(0,660,'blueTurret');
     silverTank = this.add.sprite(1250, 660, 'silverTank');
@@ -31,7 +31,6 @@ TanksGame.Splash.prototype = {
     greenTurret = this.add.sprite(937, 660, 'greenTurret');
   },
   update: function(){
-    console.log(game.world.centerX);
     curtain.y-=4;
     blueTank.y-=4;
     blueTurret.y-=4;

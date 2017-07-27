@@ -20,11 +20,16 @@ TanksGame.Menu.prototype = {
     this.load.spritesheet('greenTurret', '/assets/green_tank_top.png', 50, 50, 1);
     this.load.spritesheet('purpleTurret', '/assets/purple_tank_top.png', 50, 50, 1);
     this.load.spritesheet('startButton', '/assets/play_button_2.png', 325, 97);
+    this.load.spritesheet('helpButton', '/assets/help_button.png', 325, 97);
   },
   create: function(){
-    splode.play();
-    let anchor = {x:0.5,y:0.5};
+    if(!splashed){
+      splode.play();
+      splashed = true;
+    }
+
     let bg = this.add.image(0,0, 'bg')
+    let anchor = {x:0.5,y:0.5};
     game.add.text(35,300,'Welcome to Desktop Tanks: The online multiplayer game where you can destroy your friends and strangers from around the world. Select a tank color and enter your name to begin destruction!', {font: '30px VT323', fill: 'white', align: 'center', wordWrap: true, wordWrapWidth: 1250})
 
     const redTank = this.add.sprite(650,400,'redTank');
@@ -88,7 +93,14 @@ TanksGame.Menu.prototype = {
     greenTank.events.onInputDown.add(()=>{selections.color = 'green'});
     greenTurret.events.onInputDown.add(()=>{selections.color = 'green'});
 
-    const startButton = game.add.button(504,560,'startButton',TanksGame.Menu.prototype.validate,this, 1,3,2)
+
+    const startButton = game.add.button(320,560,'startButton',TanksGame.Menu.prototype.validate,this, 1,3,2);
+
+    const helpButton = game.add.button(681,560,'helpButton',()=>{nameForm.remove();game.state.start('Controls')},this, 1,3,2);
+
+
+
+
     let gameDiv = document.getElementById('gameContainer');
     let nameForm = document.createElement('input');
     nameForm.type ="text";

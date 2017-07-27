@@ -1,10 +1,9 @@
 var TanksGame = {};
+console.log('cats');
 
 TanksGame.Boot = function(game){
 
 };
-
-this.Turret;
 
 TanksGame.Boot.prototype = {
   preload: function(){
