@@ -21,6 +21,7 @@ TanksGame.Menu.prototype = {
     this.load.spritesheet('greenTurret', '/assets/green_tank_top.png', 50, 50, 1);
     this.load.spritesheet('purpleTurret', '/assets/purple_tank_top.png', 50, 50, 1);
     this.load.spritesheet('startButton', '/assets/play_button_2.png', 325, 97);
+    this.load.spritesheet('helpButton', '/assets/help_button.png', 325, 97);
   },
   create: function(){
     splode.play();
@@ -89,7 +90,11 @@ TanksGame.Menu.prototype = {
     greenTurret.events.onInputDown.add(()=>{selections.color = 'green'});
 
 
-    const startButton = game.add.button(504,560,'startButton',TanksGame.Menu.prototype.validate,this, 1,3,2)
+    const startButton = game.add.button(504,560,'startButton',TanksGame.Menu.prototype.validate,this, 1,3,2);
+
+    const helpButton = game.add.button(0,560,'helpButton',()=>{nameForm.remove();game.state.start('Controls')},this, 1,3,2);
+
+
 
 
     let gameDiv = document.getElementById('gameContainer');

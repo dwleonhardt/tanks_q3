@@ -34,7 +34,6 @@ TanksGame.Splash.prototype = {
     greenTurret = this.add.sprite(937, 660, 'greenTurret');
   },
   update: function(){
-    console.log(game.world.centerX);
     curtain.y-=4;
     blueTank.y-=4;
     blueTurret.y-=4;

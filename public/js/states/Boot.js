@@ -1,10 +1,9 @@
 var TanksGame = {};
+console.log('cats');
 
 TanksGame.Boot = function(game){
 
 };
-
-this.Turret;
 
 TanksGame.Boot.prototype = {
   preload: function(){
@@ -17,6 +16,6 @@ TanksGame.Boot.prototype = {
     this.pageAlignVertically = true;
     this.stage.forcePortrait = true;
     this.stage.backgroundColor = '#553EB4';
-    this.state.start('Splash');
+    this.state.start('Controls');
   }
 };

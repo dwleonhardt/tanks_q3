@@ -143,7 +143,13 @@ TanksGame.Tank.prototype.update =  function() {
     game.physics.arcade.velocityFromAngle(tank.angle-90, 300, tank.body.velocity);
     tank.animations.add('up',[0,1,2], 5);
     tank.animations.play('up', 5, true);
+  }else if (game.input.keyboard.isDown(Phaser.Keyboard.S)||game.input.keyboard.isDown(Phaser.Keyboard.DOWN)){
+    game.physics.arcade.velocityFromAngle(tank.angle-90, -300, tank.body.velocity);
+    tank.animations.add('up',[0,1,2], 5);
+    tank.animations.play('up', 5, true);
   }
+
+
   if (tank.x <=25){
      tank.x = 26;
     }

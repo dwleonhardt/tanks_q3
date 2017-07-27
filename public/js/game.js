@@ -4,4 +4,5 @@
   game.state.add('Menu', TanksGame.Menu);
   game.state.add('Play', TanksGame.Play);
   game.state.add('GameOver', TanksGame.GameOver);
+  game.state.add('Controls', TanksGame.Controls);
   game.state.start('Boot');
