@@ -46,18 +46,18 @@ let startPos = [{
 
 io.on('connection', function(socket){
   socket.on('addPlayer', function(selections){
-    for (let i = 0; i<tanks.length; i++){
-      if (tanks[i].id === socket.id){
-        tanks[i].x = startPos[indexToUse].x;
-        tanks[i].y = startPos[indexToUse].y;
-        tanks[i].color = selections.color;
-        tanks[i].name = selections.name;
-        socket.emit('allPrev', tanks.filter((tank)=>{return tank.id!=socket.id}));
-        socket.emit('addTank', tanks[i]);
-        socket.broadcast.emit('newBaddy', tanks[i]);
-        return;
-      }
-    }
+    // for (let i = 0; i<tanks.length; i++){
+    //   if (tanks[i].id === socket.id){
+    //     tanks[i].x = startPos[indexToUse].x;
+    //     tanks[i].y = startPos[indexToUse].y;
+    //     tanks[i].color = selections.color;
+    //     tanks[i].name = selections.name;
+    //     socket.emit('allPrev', tanks.filter((tank)=>{return tank.id!=socket.id}));
+    //     socket.emit('addTank', tanks[i]);
+    //     socket.broadcast.emit('newBaddy', tanks[i]);
+    //     return;
+    //   }
+    // }
     console.log('no tank found');
     let x;
     let y;
@@ -101,6 +101,11 @@ io.on('connection', function(socket){
     socket.broadcast.emit('shootStream', info);
   });
   socket.on('deathStream', function(info){
+    for(let i = 0;i< tanks.length;i++){
+      if (tanks[i].id === info.death){
+        tanks.splice(i,1);
+      }
+    }
     socket.broadcast.emit('deathStream', info);
   });
   socket.on('bonusHealthStream', function(info){
