@@ -58,5 +58,6 @@ TanksGame.Play.prototype = {
 }
 
 module.exports = {
-  destroyTheWeak
+  destroyTheWeak,
+  TanksGame
 };
