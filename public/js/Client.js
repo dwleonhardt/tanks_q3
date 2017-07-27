@@ -12,7 +12,7 @@ Client.socket.on('newBaddy', function({x,y,id,color,name}){
   }
 });
 Client.socket.on('allPrev', function(data){
-  data.forEach((tank)=>{TanksGame.Play.prototype.addFoe(tank.x,tank.y,tank.id,tank.color);})
+  data.forEach((tank)=>{TanksGame.Play.prototype.addFoe(tank.x,tank.y,tank.id,tank.color,tank.name);})
 });
 Client.socket.on('moveStream', function({x,y,id,tankAngle,turretAngle}){
   game.world.children.forEach((sprite)=>{
