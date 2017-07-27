@@ -12,6 +12,7 @@ TanksGame.Tank = function (x,y,id,color,name) {
   tank.health = 10;
   tank.anchor.setTo(0.5, 0.5);
 
+  var explosions;
 
   turret = game.add.sprite(x, y, color+'Turret', color+'Tank');
   turret.anchor.setTo(0.5, 0.6);
@@ -30,8 +31,6 @@ TanksGame.Tank = function (x,y,id,color,name) {
   enemyBullets.setAll('checkWorldBounds', true);
   enemyBullets.setAll('outOfBoundsKill', true);
 
-
-
   game.add.sprite(507, 648, 'healthBarBorder');
   healthbar = game.add.sprite(520,660,'healthBar');
   healthbar.cropEnabled = true;
@@ -47,12 +46,12 @@ TanksGame.Tank = function (x,y,id,color,name) {
   nextFire = 0;
 }
 TanksGame.Tank.prototype.hitCounter = function (shooterId, bullet) {
-
+  console.log(tank.health);
   tank.health --;
   healthbar.cropInit();
   bullet.kill();
-
 }
+
 TanksGame.Tank.prototype.checkHit = function(enemyBullets){
   var liveEnemyBullets = enemyBullets.filter((bullet)=>bullet.alive).list;
 
@@ -128,6 +127,7 @@ TanksGame.Tank.prototype.update =  function() {
       });
 
     }
+    }
   }
 
 
@@ -171,4 +171,4 @@ TanksGame.Tank.prototype.update =  function() {
       game.stage.backgroundColor = '#553EB4';
       game.state.start('GameOver');
     }
-}
+// }
