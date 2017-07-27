@@ -105,8 +105,8 @@ io.on('connection', function(socket){
 
 
 if (process.env.NODE_ENV !== 'production') {
-  server.listen(port,'10.9.21.13', ()=>{
-    console.log('listening on ', '10.9.21.13:'+port);
+  server.listen(port,'10.9.21.194', ()=>{
+    console.log('listening on ', '10.9.21.194:'+port);
   });
 }
 else{

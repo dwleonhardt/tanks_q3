@@ -5,10 +5,14 @@ TanksGame.Tank = function (x,y,id,color) {
   tank.health = 10;
   tank.anchor.setTo(0.5, 0.5);
 
+
   turret = game.add.sprite(x, y, color+'Turret', color+'Tank');
   turret.anchor.setTo(0.5, 0.6);
   turret.id = id;
 
+  if (color === 'bella') {
+    turret.anchor.setTo(0.2,0.5)
+  }
 
   bullets = game.add.group();
   bullets.enableBody = true;
