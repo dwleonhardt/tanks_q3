@@ -72,9 +72,6 @@ TanksGame.Tank.prototype.checkYoStream = function(bullets){
 
   liveBullets.forEach(bullet=>{
     game.world.children.forEach(otherTank=>{
-      // console.log(otherTank.key);
-      // if(otherTank.id != tank.id && otherTank.key.indexOf('Tank') >-1){
-
         let left = otherTank.position.x - 25;
         let right = otherTank.position.x + 25;
         let up = otherTank.position.y - 25;
