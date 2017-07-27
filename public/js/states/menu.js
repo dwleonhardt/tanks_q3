@@ -88,16 +88,7 @@ TanksGame.Menu.prototype = {
     greenTurret.events.onInputDown.add(()=>{selections.color = 'green'});
 
 
-    const startButton = game.add.button(504,560,'startButton',()=>{
-      if(selections.color&&selections.name){
-        document.getElementById('nameForm');
-        nameForm.remove();
-        // TanksGame.Play.prototype.alive = true;
-        this.state.start('Play');
-      }else{
-        console.log('you\'re not ready');
-      }
-    },this, 1,3,2)
+    const startButton = game.add.button(504,560,'startButton',TanksGame.Menu.prototype.validate,this, 1,3,2)
 
 
     let gameDiv = document.getElementById('gameContainer');
@@ -113,6 +104,33 @@ TanksGame.Menu.prototype = {
     theNamer = document.getElementById('nameForm');
     $('#nameForm').change(()=>{selections.name = $('#nameForm').val()});
 
+  },
+  validate: ()=>{
+    TanksGame.Menu.prototype.clearPrompt();
+    if(selections.color&&selections.name){
+      document.getElementById('nameForm');
+      nameForm.remove();
+      game.state.start('Play');
+    }else if(selections.color&&!selections.name){
+      let prompt = game.add.text(555,660,'Please Add Your Name.', {font: 'bold 25px VT323', fill: 'red'})
+      prompt.key='';
+      prompt.isPrompt = true;
+    }else if(!selections.color&&selections.name){
+      let prompt = game.add.text(555,660,'Please Choose A Color.', {font: 'bold 25px VT323', fill: 'red'})
+      prompt.key='';
+      prompt.isPrompt = true;
+    }else{
+      let prompt = game.add.text(480,660,'Please Choose A Color And Add A Name.', {font: 'bold 25px VT323', fill: 'red'})
+      prompt.key='';
+      prompt.isPrompt = true;
+    }
+  },
+  clearPrompt: function(){
+    game.world.children.forEach((sprite)=>{
+      if(sprite.isPrompt){
+        sprite.destroy();
+      }
+    });
   },
   update: function(){
     if(selections.color){
