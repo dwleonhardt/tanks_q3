@@ -1,10 +1,9 @@
 if(TanksGame){
-  console.log(yay);
+  console.log('yay');
 }
 else {
   var TanksGame = {}
 }
-
 
 TanksGame.Play = function(game){
   this.score = 0;

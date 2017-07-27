@@ -65,10 +65,26 @@ TanksGame.Tank.prototype.checkHit = function(enemyBullets){
     });
   });
 }
+TanksGame.Tank.prototype.checkYoStream = function(bullets){
+  var liveBullets = bullets.filter((bullet)=>bullet.alive).list;
+
+  liveBullets.forEach(bullet=>{
+    game.world.hash.forEach(otherTank=>{
+      let left = otherTank.position.x - 25;
+      let right = otherTank.position.x + 25;
+      let up = otherTank.position.y - 25;
+      let down = otherTank.position.y + 25;
+      if((bullet.x>left&&bullet.x<right)&&(bullet.y>up&&bullet.y<down)&&(otherTank.id != tank.id)){
+        bullet.kill();
+      }
+    })
+  })
+}
 TanksGame.Tank.prototype.update =  function() {
   label.x = tank.x-12;
   label.y = tank.y-45;
   TanksGame.Tank.prototype.checkHit(enemyBullets);
+  TanksGame.Tank.prototype.checkYoStream(bullets)
 
 
   Client.socket.emit('moveStream', {

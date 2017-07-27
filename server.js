@@ -124,7 +124,7 @@ if (process.env.NODE_ENV !== 'production') {
     console.log('listening on ', '10.9.21.194:'+port);
 
   });
-}else{
+} else{
   server.listen(port,()=>{
     console.log('listening on ', port);
   });
