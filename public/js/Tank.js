@@ -71,14 +71,15 @@ TanksGame.Tank.prototype.checkYoStream = function(bullets){
   var liveBullets = bullets.filter((bullet)=>bullet.alive).list;
 
   liveBullets.forEach(bullet=>{
-    game.world.hash.forEach(otherTank=>{
-      let left = otherTank.position.x - 25;
-      let right = otherTank.position.x + 25;
-      let up = otherTank.position.y - 25;
-      let down = otherTank.position.y + 25;
-      if((bullet.x>left&&bullet.x<right)&&(bullet.y>up&&bullet.y<down)&&(otherTank.id != tank.id)){
-        bullet.kill();
-      }
+    game.world.children.forEach(otherTank=>{
+        let left = otherTank.position.x - 25;
+        let right = otherTank.position.x + 25;
+        let up = otherTank.position.y - 25;
+        let down = otherTank.position.y + 25;
+        if((bullet.x>left&&bullet.x<right)&&(bullet.y>up&&bullet.y<down)&&(otherTank.id != tank.id)){
+          bullet.kill();
+        }
+      // }
     })
   })
 }
