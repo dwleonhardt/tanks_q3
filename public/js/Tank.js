@@ -2,8 +2,13 @@ TanksGame.Tank = function (x,y,id,color) {
   this.id = id;
   tank = game.add.sprite(x, y, color+'Tank');
   tank.id = id;
+  tank.maxHealth = 10
   tank.health = 10;
   tank.anchor.setTo(0.5, 0.5);
+
+
+
+
 
   turret = game.add.sprite(x, y, color+'Turret', color+'Tank');
   turret.anchor.setTo(0.5, 0.6);
@@ -24,17 +29,30 @@ TanksGame.Tank = function (x,y,id,color) {
 
   game.physics.enable(tank, Phaser.Physics.ARCADE);
 
+  healthbar = game.add.sprite(520,660,'healthBar');
+  healthbar.cropEnabled = true;
+
+
+  healthbar.cropInit = function(){
+    healthbar.width = (tank.health / tank.maxHealth) * healthbar.width;
+    console.log(healthbar.width);
+    new Phaser.Rectangle(520,660, healthbar.width, healthbar.height);
+  }
+
+
   fireRate = 100;
   nextFire = 0;
 }
 TanksGame.Tank.prototype.hitCounter = function (shooterId, bullet) {
 
   tank.health --;
+  healthbar.cropInit();
   console.log(tank.health);
   bullet.kill();
 
 }
 TanksGame.Tank.prototype.update =  function() {
+
 
   var liveEnemyBullets = enemyBullets.filter((bullet)=>bullet.alive).list;
 
