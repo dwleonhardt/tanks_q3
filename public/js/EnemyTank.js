@@ -23,3 +23,7 @@ TanksGame.EnemyTank.prototype.update =  ()=> {
   enemyLabel.x = enemyTank.x-12;
   enemyLabel.y = enemyTank.y-45;
 }
+
+module.exports = {
+  TanksGame
+};
