@@ -23,6 +23,7 @@ TanksGame.Menu.prototype = {
     this.load.spritesheet('startButton', '/assets/play_button_2.png', 325, 97);
   },
   create: function(){
+    splode.play();
     let bg = this.add.image(0,0, 'bg')
     let anchor = {x:0.5,y:0.5};
 
