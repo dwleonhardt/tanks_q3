@@ -1,4 +1,4 @@
-TanksGame.EnemyTank = function (x,y,id,color) {
+TanksGame.EnemyTank = function (x,y,id,color,name) {
   this.id = id;
   enemyTank = game.add.sprite(x, y, color+'Tank');
   enemyTank.anchor.setTo(0.5, 0.5);
