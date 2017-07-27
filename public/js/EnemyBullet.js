@@ -15,7 +15,3 @@ TanksGame.EnemyBullet.prototype.update =  (mouseX, mouseY, bulletX, bulletY, bul
   enemyBullet.reset(bulletX, bulletY);
   game.physics.arcade.moveToXY(enemyBullet, mouseX, mouseY, 300);
 }
-
-module.exports = {
-  TanksGame
-};

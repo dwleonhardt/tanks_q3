@@ -171,7 +171,3 @@ TanksGame.Tank.prototype.update =  function() {
       game.state.start('GameOver');
     }
 }
-
-module.exports = {
-  TanksGame
-};
