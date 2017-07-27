@@ -11,7 +11,7 @@ TanksGame.Tank = function (x,y,id,color) {
   turret.id = id;
 
   if (color === 'bella') {
-    turret.anchor.setTo(0.2,0.5)
+    turret.anchor.setTo(0.5,0.5)
   }
 
   bullets = game.add.group();
