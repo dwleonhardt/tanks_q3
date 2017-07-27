@@ -135,7 +135,8 @@ TanksGame.Menu.prototype = {
   },
   update: function(){
     if(selections.color){
-      game.world.children.forEach((sprite)=>{
+      var newArr = game.world.children.slice(2,12);
+      newArr.forEach((sprite)=>{
         if(sprite.key.indexOf(selections.color) >-1){
           sprite.angle+=4;
         }
