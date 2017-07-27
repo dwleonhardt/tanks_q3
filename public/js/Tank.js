@@ -151,6 +151,8 @@ TanksGame.Tank.prototype.update =  function() {
       turret.destroy();
       TanksGame.Play.prototype.ready = false;
       selections.color = '';
+      selections.name = '';
+      game.stage.backgroundColor = '#553EB4';
       game.state.start('Menu');
     }
 }
