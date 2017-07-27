@@ -26,7 +26,7 @@ TanksGame.Menu.prototype = {
     splode.play();
     let anchor = {x:0.5,y:0.5};
     let bg = this.add.image(0,0, 'bg')
-    game.add.text(35,300,'Welcome to Desktop Tanks: The online multiplayer game where you can destroy your friends and strangers from around the world. Please select a tank color and enter your name to begin destruction!', {font: '30px VT323', fill: 'white', align: 'center', wordWrap: true, wordWrapWidth: 1250})
+    game.add.text(35,300,'Welcome to Desktop Tanks: The online multiplayer game where you can destroy your friends and strangers from around the world. Select a tank color and enter your name to begin destruction!', {font: '30px VT323', fill: 'white', align: 'center', wordWrap: true, wordWrapWidth: 1250})
 
     const redTank = this.add.sprite(650,400,'redTank');
     const redTurret = this.add.sprite(650,400,'redTurret');
