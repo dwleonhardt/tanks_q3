@@ -156,3 +156,7 @@ TanksGame.Tank.prototype.update =  function() {
       game.state.start('Menu');
     }
 }
+
+module.exports = {
+  TanksGame
+};

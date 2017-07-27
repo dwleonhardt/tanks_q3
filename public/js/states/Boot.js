@@ -22,6 +22,5 @@ TanksGame.Boot.prototype = {
 };
 
 module.exports = {
-  // destroyTheWeak,
   TanksGame
 };
