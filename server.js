@@ -104,14 +104,14 @@ io.on('connection', function(socket){
   });
 });
 
-// if (process.env.NODE_ENV !== 'production') {
-//   server.listen(port,'10.9.22.254', ()=>{
-//     console.log('listening on ', '10.9.22.254:'+port);
-//
-//   });
-// }
-// else{
+if (process.env.NODE_ENV !== 'production') {
+  server.listen(port,'192.168.1.5', ()=>{
+    console.log('listening on ', '192.168.1.5:'+port);
+
+  });
+}
+else{
   server.listen(port,()=>{
     console.log('listening on ', port);
   });
-// }
+}

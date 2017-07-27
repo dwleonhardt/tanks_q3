@@ -38,7 +38,6 @@ TanksGame.Tank = function (x,y,id,color,name) {
 
   healthbar.cropInit = function(){
     healthbar.width = (tank.health / tank.maxHealth) * healthbar.width;
-    console.log(healthbar.width);
     new Phaser.Rectangle(520,660, healthbar.width, healthbar.height);
   }
 
@@ -50,7 +49,6 @@ TanksGame.Tank.prototype.hitCounter = function (shooterId, bullet) {
 
   tank.health --;
   healthbar.cropInit();
-  console.log(tank.health);
   bullet.kill();
 
 }
@@ -148,7 +146,8 @@ TanksGame.Tank.prototype.update =  function() {
       })
       tank.destroy();
       turret.destroy();
-      TanksGame.Play.prototype.alive = false;
+      TanksGame.Play.prototype.ready = false;
+      // TanksGame.Play.prototype.alive = false;
       selections.color = '';
       game.state.start('Menu');
     }

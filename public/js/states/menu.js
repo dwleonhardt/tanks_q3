@@ -92,6 +92,7 @@ TanksGame.Menu.prototype = {
       if(selections.color&&selections.name){
         document.getElementById('nameForm');
         nameForm.remove();
+        // TanksGame.Play.prototype.alive = true;
         this.state.start('Play');
       }else{
         console.log('you\'re not ready');
