@@ -39,8 +39,9 @@ TanksGame.Play.prototype = {
     delete TanksGame.Play.prototype.allTanks[id];
     game.world.children = game.world.children.filter((sprite)=>{return sprite.id != id});
   },
-  addFoe: function(x,y,id,color){
-    enemy = new TanksGame.EnemyTank(x,y,id,color);
+  addFoe: function(x,y,id,color,name){
+    console.log(name);
+    enemy = new TanksGame.EnemyTank(x,y,id,color,name);
     TanksGame.Play.prototype.allTanks[id] = enemy;
   },
   addMe: (x,y,id,color,name)=>{

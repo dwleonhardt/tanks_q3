@@ -1,6 +1,8 @@
 TanksGame.EnemyTank = function (x,y,id,color,name) {
   this.id = id;
   enemyTank = game.add.sprite(x, y, color+'Tank');
+  game.physics.enable(enemyTank, Phaser.Physics.ARCADE);
+  enemyLabel = game.add.text(x-12,y-40,name, {font: 'bold 19px VT323', fill: 'black'})
   enemyTank.anchor.setTo(0.5, 0.5);
   enemyTank.id = id;
 
@@ -15,5 +17,6 @@ TanksGame.EnemyTank = function (x,y,id,color,name) {
 }
 
 TanksGame.EnemyTank.prototype.update =  ()=> {
-
+  enemyLabel.x = enemyTank.x-12;
+  enemyLabel.y = enemyTank.y-45;
 }
