@@ -27,6 +27,7 @@ TanksGame.Play.prototype = {
     this.load.spritesheet('healthBar', '/assets/health_bar.png', 250, 25, 1);
   },
   create: function(){
+    this.stage.backgroundColor = '#7BAFAF';
     allTanks = {};
     game.physics.startSystem(Phaser.Physics.ARCADE);
     Client.addPlayer(selections.color);

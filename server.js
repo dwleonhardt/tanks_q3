@@ -105,8 +105,13 @@ io.on('connection', function(socket){
 
 
 if (process.env.NODE_ENV !== 'production') {
+<<<<<<< HEAD
   server.listen(port,'10.9.23.162', ()=>{
     console.log('listening on ', '10.9.23.162:'+port);
+=======
+  server.listen(port,'10.9.22.254', ()=>{
+    console.log('listening on ', '10.9.22.254:'+port);
+>>>>>>> 37598901e2c6ae5013bcaa1c28959d404d8ca155
   });
 }
 else{
