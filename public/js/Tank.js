@@ -1,9 +1,10 @@
-TanksGame.Tank = function (x,y,id,color) {
+TanksGame.Tank = function (x,y,id,color,name) {
   this.id = id;
   tank = game.add.sprite(x, y, color+'Tank');
   tank.id = id;
   tank.health = 10;
   tank.anchor.setTo(0.5, 0.5);
+
 
   turret = game.add.sprite(x, y, color+'Turret', color+'Tank');
   turret.anchor.setTo(0.5, 0.6);

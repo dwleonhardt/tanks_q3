@@ -57,14 +57,15 @@ let startPos = [{
 ]
 let indexToUse = 0;
 io.on('connection', function(socket){
-  socket.on('addPlayer', function(color){
+  socket.on('addPlayer', function(selections){
     let x;
     let y;
     let newPlayer = {
       x:startPos[indexToUse].x,
       y:startPos[indexToUse].y,
       id: socket.id,
-      color: color
+      color: selections.color,
+      name: selections.name
     }
     indexToUse++;
     indexToUse===5?indexToUse=0:null;

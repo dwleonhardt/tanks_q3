@@ -30,7 +30,7 @@ TanksGame.Play.prototype = {
     this.stage.backgroundColor = '#7BAFAF';
     allTanks = {};
     game.physics.startSystem(Phaser.Physics.ARCADE);
-    Client.addPlayer(selections.color);
+    Client.addPlayer(selections);
   },
   destroyTheWeak:function(id){
     console.log(id+' is a coward!!');
