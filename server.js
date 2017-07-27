@@ -48,7 +48,6 @@ io.on('connection', function(socket){
   socket.on('addPlayer', function(selections){
     for (let i = 0; i<tanks.length; i++){
       if (tanks[i].id === socket.id){
-        console.log('tanks found');
         tanks[i].x = startPos[indexToUse].x;
         tanks[i].y = startPos[indexToUse].y;
         tanks[i].color = selections.color;
@@ -56,7 +55,6 @@ io.on('connection', function(socket){
         socket.emit('allPrev', tanks.filter((tank)=>{return tank.id!=socket.id}));
         socket.emit('addTank', tanks[i]);
         socket.broadcast.emit('newBaddy', tanks[i]);
-        console.log(tanks);
         return;
       }
     }
@@ -111,8 +109,8 @@ io.on('connection', function(socket){
 });
 
 if (process.env.NODE_ENV !== 'production') {
-  server.listen(port,'10.9.21.13', ()=>{
-    console.log('listening on ', '10.9.22.254:'+port);
+  server.listen(port,'10.9.23.162', ()=>{
+    console.log('listening on ', '10.9.23.162:'+port);
   });
 } else{
   server.listen(port,()=>{

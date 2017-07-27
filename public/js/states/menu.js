@@ -23,8 +23,9 @@ TanksGame.Menu.prototype = {
   },
   create: function(){
     splode.play();
-    let bg = this.add.image(0,0, 'bg')
     let anchor = {x:0.5,y:0.5};
+    let bg = this.add.image(0,0, 'bg')
+    game.add.text(35,300,'Welcome to Desktop Tanks: The online multiplayer game where you can destroy your friends and strangers from around the world. Select a tank color and enter your name to begin destruction!', {font: '30px VT323', fill: 'white', align: 'center', wordWrap: true, wordWrapWidth: 1250})
 
     const redTank = this.add.sprite(650,400,'redTank');
     const redTurret = this.add.sprite(650,400,'redTurret');
@@ -86,6 +87,7 @@ TanksGame.Menu.prototype = {
     greenTurret.active = false;
     greenTank.events.onInputDown.add(()=>{selections.color = 'green'});
     greenTurret.events.onInputDown.add(()=>{selections.color = 'green'});
+
     const startButton = game.add.button(504,560,'startButton',TanksGame.Menu.prototype.validate,this, 1,3,2)
     let gameDiv = document.getElementById('gameContainer');
     let nameForm = document.createElement('input');
@@ -129,7 +131,8 @@ TanksGame.Menu.prototype = {
   },
   update: function(){
     if(selections.color){
-      game.world.children.forEach((sprite)=>{
+      var newArr = game.world.children.slice(2,12);
+      newArr.forEach((sprite)=>{
         if(sprite.key.indexOf(selections.color) >-1){
           sprite.angle+=4;
         }
