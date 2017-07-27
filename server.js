@@ -117,10 +117,13 @@ io.on('connection', function(socket){
   socket.on('deathStream', function(info){
     socket.broadcast.emit('deathStream', info);
   });
+  socket.on('bonusHealthStream', function(info){
+    socket.broadcast.emit('bonusHealthStream', info);
+  });
 });
 
 if (process.env.NODE_ENV !== 'production') {
-  server.listen(port,'10.9.22.254', ()=>{
+  server.listen(port,'10.9.21.13', ()=>{
     console.log('listening on ', '10.9.22.254:'+port);
   });
 } else{

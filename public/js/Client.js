@@ -42,6 +42,13 @@ Client.socket.on('quitter', function(info){
 Client.socket.on('deathStream', function({death}){
   TanksGame.Play.prototype.destroyTheWeak(death);
 });
+Client.socket.on('bonusHealthStream', function({winner}){
+  game.world.children.forEach((sprite)=>{
+    if(sprite.id === winner && sprite.health>1){
+        TanksGame.Tank.prototype.addHealth();
+    }
+  })
+});
 Client.addPlayer = function(selections){
   Client.socket.emit('addPlayer', selections);
 };

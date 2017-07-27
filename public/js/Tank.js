@@ -38,7 +38,7 @@ TanksGame.Tank = function (x,y,id,color,name) {
 
 
   healthbar.cropInit = function(){
-    healthbar.width = (tank.health / tank.maxHealth) * healthbar.width;
+    healthbar.width = (tank.health / tank.maxHealth) * 225;
     new Phaser.Rectangle(520,660, healthbar.width, healthbar.height);
   }
 
@@ -47,12 +47,29 @@ TanksGame.Tank = function (x,y,id,color,name) {
   nextFire = 0;
 }
 TanksGame.Tank.prototype.hitCounter = function (shooterId, bullet) {
-
   tank.health --;
   healthbar.cropInit();
   bullet.kill();
-
+  if (tank.health==0){
+    Client.socket.emit('bonusHealthStream', {
+      winner: bullet.id
+    });
+  }
 }
+
+TanksGame.Tank.prototype.addHealth = function () {
+  if(tank.health<tank.maxHealth){
+    if ((tank.health + 2) <= tank.maxHealth) {
+      tank.health += 2;
+      healthbar.cropInit();
+    }
+    else {
+      tank.health = tank.maxHealth;
+      healthbar.cropInit();
+    }
+  }
+};
+
 TanksGame.Tank.prototype.checkHit = function(enemyBullets){
   var liveEnemyBullets = enemyBullets.filter((bullet)=>bullet.alive).list;
 
@@ -81,7 +98,6 @@ TanksGame.Tank.prototype.checkYoStream = function(bullets){
         if((bullet.x>left&&bullet.x<right)&&(bullet.y>up&&bullet.y<down)&&(otherTank.id != tank.id)){
           bullet.kill();
         }
-      // }
     })
   })
 }
@@ -126,20 +142,17 @@ TanksGame.Tank.prototype.update =  function() {
         bulletId: tank.id,
         bulletName: tank.name
       });
-
     }
   }
-
-
-  if (game.input.keyboard.isDown(Phaser.Keyboard.A)||game.input.keyboard.isDown(Phaser.Keyboard.LEFT)){
+  if (game.input.keyboard.isDown(Phaser.Keyboard.A) || game.input.keyboard.isDown(Phaser.Keyboard.LEFT)){
     tank.body.angularVelocity = -200;
     tank.body.label_name = 200;
   }
-  else if (game.input.keyboard.isDown(Phaser.Keyboard.D)||game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)){
+  else if (game.input.keyboard.isDown(Phaser.Keyboard.D) || game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)){
     tank.body.angularVelocity = 200;
   }
 
-  if (game.input.keyboard.isDown(Phaser.Keyboard.W)||game.input.keyboard.isDown(Phaser.Keyboard.UP)){
+  if (game.input.keyboard.isDown(Phaser.Keyboard.W) || game.input.keyboard.isDown(Phaser.Keyboard.UP)){
     game.physics.arcade.velocityFromAngle(tank.angle-90, 300, tank.body.velocity);
     tank.animations.add('up',[0,1,2], 5);
     tank.animations.play('up', 5, true);
@@ -147,28 +160,27 @@ TanksGame.Tank.prototype.update =  function() {
   if (tank.x <=25){
      tank.x = 26;
     }
+  if (tank.x >=1273){
+   tank.x = 1272;
+  }
 
-    if (tank.x >=1273){
-     tank.x = 1272;
-    }
+  if (tank.y <=25){
+   tank.y = 26;
+  }
 
-    if (tank.y <=25){
-     tank.y = 26;
-    }
-
-    if (tank.y >=673){
-     tank.y = 672;
-    }
-    if(tank.health <= 0){
-      Client.socket.emit('deathStream', {
-        death: tank.id
-      })
-      tank.destroy();
-      turret.destroy();
-      TanksGame.Play.prototype.ready = false;
-      selections.color = '';
-      selections.name = '';
-      game.stage.backgroundColor = '#553EB4';
-      game.state.start('GameOver');
-    }
+  if (tank.y >=673){
+   tank.y = 672;
+  }
+  if(tank.health <= 0){
+    Client.socket.emit('deathStream', {
+      death: tank.id
+    })
+    tank.destroy();
+    turret.destroy();
+    TanksGame.Play.prototype.ready = false;
+    selections.color = '';
+    selections.name = '';
+    game.stage.backgroundColor = '#553EB4';
+    game.state.start('GameOver');
+  }
 }
