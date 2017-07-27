@@ -21,6 +21,7 @@ TanksGame.Play.prototype = {
     this.load.spritesheet('blueTurret', '/assets/blue_tank_top.png', 50, 50, 1);
     this.load.spritesheet('redTurret', '/assets/red_tank_top.png', 50, 50, 1);
     this.load.spritesheet('bellaTurret', '/assets/bella_tank_top.png', 50, 50, 1);
+    this.load.spritesheet('background', '/assets/background.png', 1300, 700, 1);
     this.load.spritesheet('healthBarBorder', '/assets/health_bartop.png', 275, 50, 1);
     this.load.spritesheet('silverTurret', '/assets/silver_tank_top.png', 50, 50, 1);
     this.load.spritesheet('greenTurret', '/assets/green_tank_top.png', 50, 50, 1);
@@ -28,7 +29,7 @@ TanksGame.Play.prototype = {
     this.load.spritesheet('healthBar', '/assets/health_bar.png', 250, 25, 1);
   },
   create: function(){
-    this.stage.backgroundColor = '#7BAFAF';
+    this.add.image(0,0, 'background')
     allTanks = {};
     game.physics.startSystem(Phaser.Physics.ARCADE);
     Client.addPlayer(selections);

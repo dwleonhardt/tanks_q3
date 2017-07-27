@@ -1,4 +1,5 @@
 TanksGame.Tank = function (x,y,id,color,name) {
+  
   this.id = id;
   tank = game.add.sprite(x, y, color+'Tank');
   game.physics.enable(tank, Phaser.Physics.ARCADE);
@@ -8,7 +9,6 @@ TanksGame.Tank = function (x,y,id,color,name) {
   tank.maxHealth = 10
   tank.health = 10;
   tank.anchor.setTo(0.5, 0.5);
-
 
 
 
