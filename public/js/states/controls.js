@@ -5,7 +5,7 @@ TanksGame.Controls = function(game){
 
 TanksGame.Controls.prototype = {
   preload: function(){
-    this.load.image('bg', '/assets/controls_bg.png', 1300, 700);
+    this.load.image('bgcontrols', '/assets/controls_bg.png', 1300, 700);
     this.load.image('wasdad', '/assets/wasdad.png');
     this.load.image('wasdws', '/assets/wasdws.png');
     this.load.image('mouse', '/assets/mouse.png');
@@ -15,7 +15,7 @@ TanksGame.Controls.prototype = {
     this.load.spritesheet('menuButton', '/assets/menu_button.png', 325, 97);
   },
   create: function(){
-    this.add.image(0,0,'bg');
+    this.add.image(0,0,'bgcontrols');
     leftRight = this.game.add.sprite(207,180,'redTank');
     leftRight.anchor = {x:0.5, y:0.5};
     leftRight.scale.setTo(2,2);

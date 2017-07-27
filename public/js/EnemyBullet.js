@@ -1,10 +1,4 @@
 TanksGame.EnemyBullet = function (x,y,id) {
-  // bullets = game.add.group();
-  // bullets.enableBody = true;
-  // bullets.createMultiple(50000000000000000000, 'bullet');
-  // bullets.setAll('checkWorldBounds', true);
-  // bullets.setAll('outOfBoundsKill', true);
-
 
 }
 
