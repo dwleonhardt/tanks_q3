@@ -42,8 +42,8 @@ TanksGame.Play.prototype = {
     enemy = new TanksGame.EnemyTank(x,y,id,color);
     TanksGame.Play.prototype.allTanks[id] = enemy;
   },
-  addMe: (x,y,id,color)=>{
-    let me = new TanksGame.Tank(x,y,id,color);
+  addMe: (x,y,id,color,name)=>{
+    let me = new TanksGame.Tank(x,y,id,color,name);
     TanksGame.Play.prototype.allTanks[id]= me;
     TanksGame.Play.prototype.ready = true;
   },

@@ -1,11 +1,12 @@
 TanksGame.Tank = function (x,y,id,color,name) {
   this.id = id;
   tank = game.add.sprite(x, y, color+'Tank');
+  game.physics.enable(tank, Phaser.Physics.ARCADE);
+  label = game.add.text(x-12,y-40,name, {font: 'bold 16px arial', fill: 'black'})
   tank.id = id;
   tank.maxHealth = 10
   tank.health = 10;
   tank.anchor.setTo(0.5, 0.5);
-
 
 
 
@@ -27,7 +28,7 @@ TanksGame.Tank = function (x,y,id,color,name) {
   enemyBullets.setAll('checkWorldBounds', true);
   enemyBullets.setAll('outOfBoundsKill', true);
 
-  game.physics.enable(tank, Phaser.Physics.ARCADE);
+
 
   healthbar = game.add.sprite(520,660,'healthBar');
   healthbar.cropEnabled = true;
@@ -52,6 +53,8 @@ TanksGame.Tank.prototype.hitCounter = function (shooterId, bullet) {
 
 }
 TanksGame.Tank.prototype.update =  function() {
+  label.x = tank.x-12;
+  label.y = tank.y-45;
 
 
   var liveEnemyBullets = enemyBullets.filter((bullet)=>bullet.alive).list;
@@ -111,6 +114,7 @@ TanksGame.Tank.prototype.update =  function() {
 
   if (game.input.keyboard.isDown(Phaser.Keyboard.A)){
     tank.body.angularVelocity = -200;
+    tank.body.label_name = 200;
   }
   else if (game.input.keyboard.isDown(Phaser.Keyboard.D)){
     tank.body.angularVelocity = 200;
