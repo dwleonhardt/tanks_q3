@@ -120,9 +120,8 @@ io.on('connection', function(socket){
 });
 
 if (process.env.NODE_ENV !== 'production') {
-  server.listen(port,'10.9.21.194', ()=>{
-    console.log('listening on ', '10.9.21.194:'+port);
-
+  server.listen(port,'10.9.22.254', ()=>{
+    console.log('listening on ', '10.9.22.254:'+port);
   });
 } else{
   server.listen(port,()=>{
