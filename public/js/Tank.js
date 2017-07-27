@@ -30,6 +30,7 @@ TanksGame.Tank = function (x,y,id,color,name) {
 
 
 
+  game.add.sprite(507, 648, 'healthBarBorder');
   healthbar = game.add.sprite(520,660,'healthBar');
   healthbar.cropEnabled = true;
 
