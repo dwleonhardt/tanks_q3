@@ -147,7 +147,6 @@ TanksGame.Tank.prototype.update =  function() {
       tank.destroy();
       turret.destroy();
       TanksGame.Play.prototype.ready = false;
-      // TanksGame.Play.prototype.alive = false;
       selections.color = '';
       game.state.start('Menu');
     }

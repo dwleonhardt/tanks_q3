@@ -58,6 +58,21 @@ let startPos = [{
 let indexToUse = 0;
 io.on('connection', function(socket){
   socket.on('addPlayer', function(selections){
+    for (let i = 0; i<tanks.length; i++){
+      if (tanks[i].id === socket.id){
+        console.log('tanks found');
+        tanks[i].x = startPos[indexToUse].x;
+        tanks[i].y = startPos[indexToUse].y;
+        tanks[i].color = selections.color;
+        tanks[i].name = selections.name;
+        socket.emit('allPrev', tanks.filter((tank)=>{return tank.id!=socket.id}));
+        socket.emit('addTank', tanks[i]);
+        socket.broadcast.emit('newBaddy', tanks[i]);
+        console.log(tanks);
+        return;
+      }
+    }
+    console.log('no tank found');
     let x;
     let y;
     let newPlayer = {
@@ -109,8 +124,7 @@ if (process.env.NODE_ENV !== 'production') {
     console.log('listening on ', '192.168.1.5:'+port);
 
   });
-}
-else{
+}else{
   server.listen(port,()=>{
     console.log('listening on ', port);
   });
