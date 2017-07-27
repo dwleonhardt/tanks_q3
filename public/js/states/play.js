@@ -37,6 +37,16 @@ TanksGame.Play.prototype = {
   create: function(){
     this.add.image(0,0, 'background')
     allTanks = {};
+    let hint = game.add.text(game.world.centerX,0,'Destroy enemy tanks to regain health', {font: 'bold 90px VT323', fill: 'red'});
+    hint.deleteMe = true;
+    setTimeout(()=>{
+      game.world.children.forEach((sprite)=>{
+        if(sprite.deleteMe){
+          sprite.destroy();
+        }
+      })
+    },3000)
+    hint.anchor.x = 0.5;
     game.physics.startSystem(Phaser.Physics.ARCADE);
     Client.addPlayer(selections);
   },
