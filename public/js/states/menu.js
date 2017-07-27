@@ -94,9 +94,9 @@ TanksGame.Menu.prototype = {
     greenTurret.events.onInputDown.add(()=>{selections.color = 'green'});
 
 
-    const startButton = game.add.button(504,560,'startButton',TanksGame.Menu.prototype.validate,this, 1,3,2);
+    const startButton = game.add.button(320,560,'startButton',TanksGame.Menu.prototype.validate,this, 1,3,2);
 
-    const helpButton = game.add.button(0,560,'helpButton',()=>{nameForm.remove();game.state.start('Controls')},this, 1,3,2);
+    const helpButton = game.add.button(681,560,'helpButton',()=>{nameForm.remove();game.state.start('Controls')},this, 1,3,2);
 
 
 
