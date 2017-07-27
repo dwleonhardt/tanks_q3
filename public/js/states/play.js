@@ -9,7 +9,6 @@ TanksGame.Play = function(game){
 TanksGame.Play.prototype = {
   allTanks: {},
   ready: false,
-  alive: true,
   preload: function(){
     this.load.spritesheet('blueTank', '/assets/blue_tank.png', 50,50,12);
     this.load.spritesheet('bellaTank', '/assets/bella_tank.png', 50,50,1);
@@ -40,7 +39,6 @@ TanksGame.Play.prototype = {
     game.world.children = game.world.children.filter((sprite)=>{return sprite.id != id});
   },
   addFoe: function(x,y,id,color,name){
-    console.log(name);
     enemy = new TanksGame.EnemyTank(x,y,id,color,name);
     TanksGame.Play.prototype.allTanks[id] = enemy;
   },
@@ -51,7 +49,7 @@ TanksGame.Play.prototype = {
   },
   update: function(){
 
-    if(!TanksGame.Play.prototype.ready || !TanksGame.Play.prototype.alive){return;}
+    if(!TanksGame.Play.prototype.ready){return;}
     for (let tank in TanksGame.Play.prototype.allTanks){
       TanksGame.Play.prototype.allTanks[tank].update();
     }
