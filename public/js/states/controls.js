@@ -6,6 +6,9 @@ TanksGame.Controls = function(game){
 TanksGame.Controls.prototype = {
   preload: function(){
     this.load.image('bg', '/assets/controls_bg.png', 1300, 700);
+    this.load.image('wasdad', '/assets/wasdad.png');
+    this.load.image('wasdws', '/assets/wasdws.png');
+    this.load.image('mouse', '/assets/mouse.png');
     this.load.spritesheet('redTank', '/assets/red_tank.png', 50,50,13);
     this.load.spritesheet('redTurret', '/assets/red_tank_top.png', 50, 50, 1);
     this.load.spritesheet('bullet', '/assets/bullet.png', 50, 50, 1);
@@ -44,6 +47,11 @@ TanksGame.Controls.prototype = {
     fireRate = 100;
     nextFire = 0;
 
+    game.add.image(57,300,'wasdad');
+    game.add.image(490,300,'wasdws');
+
+    mouse = game.add.image(900, 300, 'mouse');
+    mouse.move = 'right';
   },
   update: function(){
     leftRight.body.angularVelocity = 0;
@@ -90,5 +98,16 @@ TanksGame.Controls.prototype = {
       }
     });
 
+    if(mouse.move==='right'){
+      mouse.x++;
+      if(mouse.x === 1000){
+        mouse.move = 'left';
+      }
+    }else{
+      mouse.x--;
+      if(mouse.x === 900){
+        mouse.move = 'right';
+      }
+    }
   }
 };
