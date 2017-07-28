@@ -1,5 +1,4 @@
 var TanksGame = {};
-console.log('cats');
 
 TanksGame.Boot = function(game){
 
