@@ -10,9 +10,9 @@ TanksGame.Tank = function (x,y,id,color,name) {
   label.id = id;
   tank.id = id;
   tank.name = name;
-  tank.maxHealth = 10;
+  tank.maxHealth = 30;
   tank.kills = 0;
-  tank.health = 10;
+  tank.health = 30;
   tank.anchor.setTo(0.5, 0.5);
 
   if(color === 'bella') {
@@ -67,7 +67,7 @@ TanksGame.Tank.prototype.clearVictory = function(){
   game.world.children = game.world.children.filter((sprite)=>{return !sprite.isVictory});
 }
 TanksGame.Tank.prototype.hitCounter = function (shooterId, bullet) {
-  tank.health --;
+  tank.health -= 2;
   healthbar.cropInit();
   bullet.kill();
   if (tank.health==0){
@@ -82,8 +82,8 @@ TanksGame.Tank.prototype.addHealth = function () {
   tank.kills++;
   TanksGame.Tank.prototype.updateVictories(tank.kills);
   if(tank.health<tank.maxHealth){
-    if ((tank.health + 2) <= tank.maxHealth) {
-      tank.health += 2;
+    if ((tank.health + 4) <= tank.maxHealth) {
+      tank.health += 4;
       healthbar.cropInit();
     }
     else {
