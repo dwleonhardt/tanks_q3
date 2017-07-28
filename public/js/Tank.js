@@ -5,6 +5,8 @@ TanksGame.Tank = function (x,y,id,color,name) {
   tank = game.add.sprite(x, y, color+'Tank');
   game.physics.enable(tank, Phaser.Physics.ARCADE);
   label = game.add.text(x-12,y-40,name, {font: 'bold 19px VT323', fill: 'black'})
+  tank.hittable = false;
+  setTimeout(()=>{tank.hittable = true;}, 3000);
   label.id = id;
   tank.id = id;
   tank.name = name;
@@ -106,7 +108,9 @@ TanksGame.Tank.prototype.checkYoStream = function(bullets){
 TanksGame.Tank.prototype.update =  function() {
   label.x = tank.x-12;
   label.y = tank.y-45;
+  if(tank.hittable){
   TanksGame.Tank.prototype.checkHit(enemyBullets);
+  }
   TanksGame.Tank.prototype.checkYoStream(bullets)
 
   Client.socket.emit('moveStream', {
@@ -195,7 +199,7 @@ TanksGame.Tank.prototype.update =  function() {
     selections.color = '';
     selections.name = '';
     game.stage.backgroundColor = '#553EB4';
-    setTimeout(()=>{game.state.start('GameOver');},2000);
+    setTimeout(()=>{game.state.start('GameOver');},1000);
 
   }
 }
