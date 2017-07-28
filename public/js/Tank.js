@@ -14,6 +14,10 @@ TanksGame.Tank = function (x,y,id,color,name) {
   tank.health = 10;
   tank.anchor.setTo(0.5, 0.5);
 
+  if(color === 'bella') {
+    tank.maxHealth = 100;
+    tank.health = 100;
+  }
 
   turret = game.add.sprite(x, y, color+'Turret', color+'Tank');
   turret.anchor.setTo(0.5, 0.6);
