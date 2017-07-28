@@ -14,3 +14,26 @@ http://imgur.com/9Aiypl6
 Stories:
 https://www.pivotaltracker.com/n/projects/2083255
 
+Retrospective:
+
+The Good 
+-Game works!
+-Good communication & fixed problems when needed
+-Working as a group was more fun that we originally expected
+-Good git flow, which included EXTENSIVE TESTING. 
+-WE ALWAYS HAD A WORKING MASTER  OOOOOOH YEEEEAH
+-Working with “project manager”
+-We dreamed big
+
+The Bad
+-Struggle to break down work into pieces to understand the roles
+-More room to help others fully understand a technology
+-Documentation
+-Consistency and naming conventions
+-Bad initial planning
+-Bad research
+
+Goals For Next Time
+-Do better documentation
+-Use comments to help others
+-More check-ins
