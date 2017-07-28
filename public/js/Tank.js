@@ -81,6 +81,7 @@ TanksGame.Tank.prototype.checkHit = function(enemyBullets){
       let down = otherTank.position.y + 25;
       if((bullet.x>left&&bullet.x<right)&&(bullet.y>up&&bullet.y<down)&&(otherTank.id === tank.id)){
         killedBy = bullet.name;
+        hit.play();
         TanksGame.Tank.prototype.hitCounter(bullet.id, bullet);
       }
     });
