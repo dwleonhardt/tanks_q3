@@ -10,7 +10,8 @@ TanksGame.Tank = function (x,y,id,color,name) {
   label.id = id;
   tank.id = id;
   tank.name = name;
-  tank.maxHealth = 10
+  tank.maxHealth = 10;
+  tank.kills = 0;
   tank.health = 10;
   tank.anchor.setTo(0.5, 0.5);
 
@@ -46,12 +47,24 @@ TanksGame.Tank = function (x,y,id,color,name) {
     new Phaser.Rectangle(520,660, healthbar.width, healthbar.height);
   }
 
-
-
+TanksGame.Tank.prototype.updateVictories(tank.kills);
 
 
   fireRate = 100;
   nextFire = 0;
+}
+TanksGame.Tank.prototype.updateVictories = function(numberOfKills){
+  console.log(numberOfKills);
+  victories = game.add.text(10,660,`VICTORIES: ${numberOfKills}`, {font: 'bold 35px VT323', fill: '#c52424'});
+  victories.isVictory = true;
+
+}
+
+
+
+
+TanksGame.Tank.prototype.clearVictory = function(){
+  game.world.children = game.world.children.filter((sprite)=>{return !sprite.isVictory});
 }
 TanksGame.Tank.prototype.hitCounter = function (shooterId, bullet) {
   tank.health --;
@@ -65,6 +78,9 @@ TanksGame.Tank.prototype.hitCounter = function (shooterId, bullet) {
 }
 
 TanksGame.Tank.prototype.addHealth = function () {
+  TanksGame.Tank.prototype.clearVictory();
+  tank.kills++;
+  TanksGame.Tank.prototype.updateVictories(tank.kills);
   if(tank.health<tank.maxHealth){
     if ((tank.health + 2) <= tank.maxHealth) {
       tank.health += 2;
