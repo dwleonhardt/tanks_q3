@@ -33,6 +33,7 @@ TanksGame.Play.prototype = {
     this.load.spritesheet('greenTurret', '/assets/green_tank_top.png', 50, 50, 1);
     this.load.spritesheet('purpleTurret', '/assets/purple_tank_top.png', 50, 50, 1);
     this.load.spritesheet('healthBar', '/assets/health_bar.png', 250, 25, 1);
+    this.load.spritesheet('splosion', '/assets/splosion.png', 150, 150, 9);
   },
   create: function(){
     this.add.image(0,0, 'background')
@@ -51,9 +52,24 @@ TanksGame.Play.prototype = {
     Client.addPlayer(selections);
   },
   destroyTheWeak:function(id){
-    console.log(id+' is a coward!!');
-    delete TanksGame.Play.prototype.allTanks[id];
-    game.world.children = game.world.children.filter((sprite)=>{return sprite.id != id});
+    if (game.state.current === 'Play'){
+      delete TanksGame.Play.prototype.allTanks[id];
+      let saveX;
+      let saveY;
+      game.world.children = game.world.children.filter((sprite)=>{
+        if(sprite.id == id){
+          saveX = sprite.x;
+          saveY = sprite.y;
+        }
+        return sprite.id != id
+      });
+      splosion = game.add.sprite(saveX,saveY,'splosion');
+      splosion.anchor ={x:0.5,y:0.5};
+      splosion.scale.setTo(1.5,1.5);
+      splosion.animations.add('boom',[0,1,2,3,4,5,6,7,8],15,false);
+      splosion.animations.play('boom');
+      setTimeout(()=>{splosion.destroy();},600);
+    }
   },
   addFoe: function(x,y,id,color,name){
     enemy = new TanksGame.EnemyTank(x,y,id,color,name);

@@ -35,12 +35,13 @@ TanksGame.Tank = function (x,y,id,color,name) {
   game.add.sprite(507, 648, 'healthBarBorder');
   healthbar = game.add.sprite(520,660,'healthBar');
   healthbar.cropEnabled = true;
-
-
   healthbar.cropInit = function(){
     healthbar.width = (tank.health / tank.maxHealth) * 225;
     new Phaser.Rectangle(520,660, healthbar.width, healthbar.height);
   }
+
+
+
 
 
   fireRate = 100;
@@ -81,6 +82,7 @@ TanksGame.Tank.prototype.checkHit = function(enemyBullets){
       let down = otherTank.position.y + 25;
       if((bullet.x>left&&bullet.x<right)&&(bullet.y>up&&bullet.y<down)&&(otherTank.id === tank.id)){
         killedBy = bullet.name;
+        hit.play();
         TanksGame.Tank.prototype.hitCounter(bullet.id, bullet);
       }
     });
@@ -179,12 +181,21 @@ TanksGame.Tank.prototype.update =  function() {
     Client.socket.emit('deathStream', {
       death: tank.id
     })
+    let saveX = tank.x;
+    let saveY = tank.y;
     tank.destroy();
     turret.destroy();
+    splosion = game.add.sprite(saveX,saveY,'splosion');
+    splosion.anchor ={x:0.5,y:0.5};
+    splosion.scale.setTo(1.5,1.5);
+    splosion.animations.add('boom',[0,1,2,3,4,5,6,7,8],15,false);
+    splosion.animations.play('boom');
+    setTimeout(()=>{splosion.destroy();},600)
     TanksGame.Play.prototype.ready = false;
     selections.color = '';
     selections.name = '';
     game.stage.backgroundColor = '#553EB4';
-    game.state.start('GameOver');
+    setTimeout(()=>{game.state.start('GameOver');},2000);
+
   }
 }
