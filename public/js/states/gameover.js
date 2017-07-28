@@ -13,7 +13,7 @@ TanksGame.GameOver.prototype = {
     theSadNews.anchor = {x:.5,y:.5}
     let yerKiller = game.add.text(game.world.centerX,350,`You were killed by ${killedBy}`, {font: 'bold 30px VT323', fill: 'white'});
     yerKiller.anchor = {x:.5,y:.5}
-    const startButton = game.add.button(490, 560, 'menuButton', ()=>{game.state.start('Menu');}, this, 1, 3, 2)
+    const startButton = game.add.button(490, 560, 'menuButton', ()=>{this.stage.backgroundColor = '#553EB4';game.state.start('Menu');}, this, 1, 3, 2)
   },
   update: function(){
   }
